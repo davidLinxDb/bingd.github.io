@@ -1,3 +1,11 @@
+---
+layout: post
+title: tasker variables
+subtitle: Tasker is a practical Android assistive tool
+categories: markdown
+tags: [tasker]
+---
+
 #### 概述
 
 变量是一个随时间变化的命名值，例如电池电量，一天中的时间。
