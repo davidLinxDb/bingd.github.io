@@ -2,7 +2,7 @@
 layout: post
 title: tasker variables
 subtitle: Tasker is a practical Android assistive tool
-categories: markdown
+categories: tasker
 tags: [tasker]
 ---
 
