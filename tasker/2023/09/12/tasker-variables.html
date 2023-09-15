@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tasker variables | Hello World</title>
+<meta name="generator" content="Jekyll v4.3.2">
+<meta property="og:title" content="tasker variables">
+<meta name="author" content="bingDai">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="概述">
+<meta property="og:description" content="概述">
+<link rel="canonical" href="/jekyll-theme-yat/tasker/2023/09/12/tasker-variables.html">
+<meta property="og:url" content="/jekyll-theme-yat/tasker/2023/09/12/tasker-variables.html">
+<meta property="og:site_name" content="Hello World">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-09-12T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="tasker variables">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"bingDai"},"dateModified":"2023-09-12T00:00:00+00:00","datePublished":"2023-09-12T00:00:00+00:00","description":"概述","headline":"tasker variables","mainEntityOfPage":{"@type":"WebPage","@id":"/jekyll-theme-yat/tasker/2023/09/12/tasker-variables.html"},"url":"/jekyll-theme-yat/tasker/2023/09/12/tasker-variables.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="">
+  <link rel="canonical" href="">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/jekyll-theme-yat/assets/css/main.css">
+  <script src="/jekyll-theme-yat/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="/jekyll-theme-yat/feed.xml" title="Hello World">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe-lightbox.umd.min.js" async></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe.umd.min.js" async></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/photoswipe.min.css" rel="stylesheet">
+<style>
+  .pswp .pswp__container .pswp__img {
+    background-color: white;
+  }
+</style>
+
+<script>
+  function initPhotoSwipe() {
+    let customOptions = {};
+
+    try {
+      const data = ``.replaceAll("=>", ":");
+      customOptions = JSON.parse(data);
+    } catch (e) {
+      console.info("Invalid custom photo previewer options! " + e.message);
+    }
+
+    // Define object and gallery options
+    const options = Object.assign(
+      {
+        gallery: "section.main",
+        children: "a.photo-swipe",
+        photo_scale: 2,
+        // dynamic import is not supported in UMD version
+        pswpModule: PhotoSwipe,
+      },
+      customOptions
+    );
+
+    const galleryEl = document.querySelector(options.gallery);
+    if (!galleryEl) {
+      return;
+    }
+
+    const imgEls = [];
+    const els = galleryEl.querySelectorAll("img:not(.emoji)");
+    els.forEach((el) => {
+      if (el.src.trim() == "") {
+        return;
+      }
+      if (!imgEls.includes(el)) {
+        imgEls.push(el);
+      }
+    });
+
+    if (imgEls.length === 0) {
+      return;
+    }
+
+    imgEls.forEach((imgEl) => {
+      imgEl.outerHTML = `
+      <a class="photo-swipe"
+        href="${imgEl.src}"
+        data-pswp-width="${
+          Math.max(imgEl.naturalWidth, imgEl.width) * options.photo_scale
+        }"
+        data-pswp-height="${
+          Math.max(imgEl.naturalHeight, imgEl.height) * options.photo_scale
+        }"
+        data-pswp-caption="${imgEl.getAttribute("caption") || imgEl.alt}"
+        target="_blank">
+        ${imgEl.outerHTML}
+      </a>`;
+    });
+
+    // Initialize PhotoSwipe 5
+    var lightbox = new PhotoSwipeLightbox(options);
+
+    lightbox.init();
+  }
+
+  window.addEventListener("load", initPhotoSwipe);
+</script>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header " role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/jekyll-theme-yat/">
+  <img class="site-favicon" title="Hello World" src="" onerror="this.style.display='none'">
+  Hello World
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/jekyll-theme-yat/about.html">ABOUT</a><a class="page-link" href="/jekyll-theme-yat/archives.html">ARCHIVES</a><a class="page-link" href="/jekyll-theme-yat/categories.html">CATEGORIES</a><a class="page-link" href="/jekyll-theme-yat/">HOME</a><a class="page-link" href="/jekyll-theme-yat/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<span class="page-link">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+</span>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('auto' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">tasker variables</h1>
+  <h2 class="post-subtitle">Tasker is a practical Android assistive tool</h2>
+
+  <div class="post-meta">
+    <time class="dt-published" datetime="2023-09-12T00:00:00+00:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Sep 12, 2023
+    </time>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 7 mins</span>
+  </div>
+<div class="post-tags"><a class="post-tag" href="/jekyll-theme-yat/tags.html#tasker">#tasker</a></div></header>
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h4 id="概述">概述</h4>
+
+<p>变量是一个随时间变化的命名值，例如电池电量，一天中的时间。</p>
+
+<p>当Tasker在文本中遇到变量名称时，它将在执行操作之前用相关变量的当前值替换名称。</p>
+
+<p>变量的主要目的是：</p>
+
+<ul>
+  <li>_动态绑定_：对数据进行操作创建任务（例如响应SMS）时未知；直到收到SMS，发送者才被知道。</li>
+  <li>允许在任务内部和任务之间 进行<a href="https://tasker.joaoapps.com/userguide/en/flowcontrol.html">流控制</a><a href="https://tasker.joaoapps.com/userguide/en/flowcontrol.html">https://tasker.joaoapps.com/userguide/en/flowcontrol.html</a>
+</li>
+  <li>记录数据以备将来使用，例如在任务之间传递数据</li>
+</ul>
+
+<h4 id="全局变量与局部变量">全局变量与局部变量</h4>
+
+<p>具有<strong>全小写</strong>名称的变量（例如％fruit_bar）是_局部变量_，这意味着它们的值特定于使用它们的任务或场景。名称中具有一个或多个大写字母的变量（例如，％Car，％WIFI）是_全局_变量，这意味着从任何地方访问它们都将返回相同值。</p>
+
+<h4 id="内置变量">内置变量</h4>
+
+<p>Tasker自动更新内置变量的值。</p>
+
+<h5 id="本地内置变量">本地内置变量</h5>
+
+<ul>
+  <li>
+<strong>操作错误</strong><br>
+<em>％err</em><br>
+如果运行最后一个操作时发生错误，则设置为整数。实际数字可以表示发生的错误，但对于大多数Tasker动作（值得注意的例外：<code class="language-plaintext highlighter-rouge">Run Shell</code>和插件）通常为1 。每个动作都会设置或清除它，因此，如果要在紧接着的下一个动作之后需要它，则必须将其保存（例如：使用<a href="https://tasker.joaoapps.com/userguide/en/help/ah_set_variable.html">Variable Set</a>）。 <a href="https://tasker.joaoapps.com/userguide/en/help/ah_set_variable.html">https://tasker.joaoapps.com/userguide/en/help/ah_set_variable.html</a>
+</li>
+  <li>
+<strong>操作错误描述</strong><br>
+<em>％errmsg</em>
+<strong>最后导致设置％err</strong>的错误的描述。当前从未由Tasker设置，但可能由某些插件操作设置。</li>
+  <li>
+<strong>任务优先级</strong><br>
+<em>％priority</em><br>
+正在运行的任务的优先级。当多个任务一起运行时，优先级确定哪个任务将执行下一个动作。另请参阅：<a href="https://tasker.joaoapps.com/userguide/en/tasks.html#scheduling">任务计划</a><br>
+<a href="https://tasker.joaoapps.com/userguide/en/tasks.html#scheduling">https://tasker.joaoapps.com/userguide/en/tasks.html#scheduling</a>
+</li>
+  <li>
+<strong>任务队列时间</strong><br>
+<em>％qtime</em><br>
+运行中的任务已经运行了多长时间（秒）。 请注意，优先级较高的任务可能会中断任务，因此此数字不一定是任务的总运行时间。</li>
+  <li>
+<strong>任务调用者</strong><br>
+<em>％caller</em><br>
+一个变量数组，用于跟踪当前正在运行的任务的来源。_％caller1_给出当前任务的来源，_％caller2_给出*％caller1_的来源，依此类推。示例：如果任务A使用动作<code class="language-plaintext highlighter-rouge">Perform Task</code>启动任务B，则在任务编辑屏幕中按“播放”按钮运行任务A时，任务B中的_％caller1_将显示<strong>task = A</strong>，_％caller2_将显示<strong>ui</strong>。数组中每个条目的格式为_callertype*（**= <strong>_callername_（</strong>：**_subcallername_））呼叫者类型如下：</li>
+  <li>
+<strong>配置文件</strong><br>
+一种配置（状态更改时）。根据配置文件是已激活还是已停用，_呼叫者_名称是<strong>进入</strong>还是<strong>退出</strong>。_subcallername_是配置文件的名称（如果有），否则为<strong>匿名</strong>
+</li>
+  <li>
+<strong>场景</strong><br>
+场景事件，其中_callername_为场景名称。对于元素事件，<em>subcallername_是元素名称。对于按下操作栏按钮，如果指定了**subcallername* ，_则该_subcallername* 为标签。对于场景全局事件（例如Key），_subcallername</em> _名称_为事件类型</li>
+  <li>
+<strong>ui</strong><br>
+Tasker UI中任务编辑屏幕中的“播放”按钮</li>
+  <li>
+<strong>启动</strong><br>
+点击启动子应用程序图标</li>
+  <li>
+<strong>nbutton</strong><br>
+一个通知操作按钮，可以从Tasker的永久通知中使用，也可以通过“通知”操作之一创建。 _呼叫者名称_指定按钮的标签（如果存在）。</li>
+  <li>
+<strong>外部</strong><br>
+外部应用（注：第三方应用）</li>
+  <li>
+<strong>qstile</strong><br>
+快速设置磁贴。_callername_指定磁贴的标签。（注：下拉状态栏中的快捷设置）。</li>
+  <li>
+<strong>appshort</strong><br>
+应用程序快捷方式（可通过长按Tasker图标来访问）。_callername_指定图块的标签。</li>
+  <li>
+<strong>任务</strong><br>
+一个任务，从执行任务的行动。_subcallername_是任务名称（如果有），否则为<strong>匿名</strong>
+</li>
+</ul>
+
+<h5 id="全局内置变量">全局内置变量</h5>
+
+<ul>
+  <li>
+<strong>飞行模式状态</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％AIR</em><br>
+飞行模式是<strong>打开</strong>还是<strong>关闭</strong>
+</li>
+  <li>
+<strong>飞行无线通讯</strong><br>
+<em>％AIRR</em><br>
+以逗号分隔的无线通讯列表，进入飞行模式后将被<strong>禁用</strong>。 常见的无线通讯名称是：_蓝牙，蜂窝网络，nfc，wifi，wimax_。</li>
+  <li>
+<strong>电池电量</strong><br>
+<em>％BATT</em><br>
+当前设备的电池电量从0到100。</li>
+  <li>
+<strong>蓝牙状态</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％BLUE</em><br>
+蓝牙是<strong>处于打开</strong>状态还是处于其他状态（<strong>关闭</strong>）。</li>
+  <li>
+<strong>日历列表</strong><br>
+<em>％CALS</em><br>
+设备上可用的以换行符分隔的日历列表。 每个条目的格式为_calendarprovider：calendarname_。 用法示例： Variable Set, %newline, \n Variable Split, %CALS, %newline Flash, %CALS(#) calendars, first one is %CALS(1)</li>
+  <li>
+<strong>日历事件标题/说明/位置</strong>*％CALTITLE /％CALDESCR /％CALLOC *<br>
+<strong>当前</strong>日历事件的标题，描述和位置（如果有）。如果当前有多个日历事件，则变量指的是<strong>最短的</strong>事件。 提示：使用Misc / Test操作（为数据指定％TIMES ）查找有关当前事件的其他详细信息。</li>
+  <li>
+<strong>呼叫名称/号码/日期/时间（拨打）</strong><code class="language-plaintext highlighter-rouge">(dynamic, monitored)</code><br>
+<em>％CNAME /％CNUM /％CDATE /％CTIME</em><br>
+当前（如果正在通话中）或最近一次呼叫的呼叫者姓名，号码，日期和时间。如果未知，则 主叫号码为<strong>0</strong>。 来电者姓名是**？**（如果是未知的）（可能是因为呼叫者号码被阻止），如果找不到联系人，则将其设置为呼叫者号码。在2.0之前的Android版本上不可用。</li>
+  <li>
+<strong>呼叫名称/号码/日期/时间/持续时间（接听）</strong><code class="language-plaintext highlighter-rouge">(dynamic, monitored)</code><br>
+<em>％CONAME /％CONUM /％CODATE /％COTIME /％CODUR</em><br>
+上次（<strong>不是</strong>当前）呼出电话的被叫名称，号码，日期和时间。 如果无法查找联系人，则“被叫姓名”设置为被叫号码。在2.0之前的Android版本上不可用。</li>
+  <li>**小区ID **<code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br>
+<em>％CELLID</em><br>
+当前的小区信号塔ID（如果知道）。 如果使用的是Cell Near状态，则即使％CELLID报告塔ID未知或无效，有时Cell Near状态也会保持活动状态。这是因为Cell Near仅响应有效ID，以防止状态（例如由于服务中断）变为非活动状态。 为了向后兼容，将使用GSM前缀报告UMTS小区。 从Android 4.2（塔斯克版4.3+版本）开始，可以同时从2种不同的网络类型中找到单元。在这种情况下，该值优先报告列表中最左边的网络类型：GSM，CDMA，UMTS，LTE。</li>
+  <li>
+<strong>信元信号强度</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br>
+<em>％CELLSIG</em><br>
+在粗糙的线性范围内，当前电话信号电平介于0到8之间。在某些手机上，级别将以2（0、2、4、6、8）为步长上升。如果该值未知或没有服务，则该值为-1。 从Android 4.2（塔斯克版4.3+版本）开始，可以同时从2种不同的网络类型中找到单元。在这种情况下，该值优先报告列表中最左边的网络类型：GSM，CDMA，UMTS，LTE。 某些Android版本存在一个错误，即在设备关闭和打开之前，报告的信号强度不会更新。</li>
+  <li>
+<strong>小区服务状态</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br>
+<em>％CELLSRV</em><br>
+当前电话服务状态：_未知的，服务状态，无服务，紧急情况下，无电_。（_unknown, service, noservice, emergency, nopower_）</li>
+  <li>
+<strong>剪贴板内容</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><em>％CLIP</em><br>
+系统剪贴板的当前内容。请注意，牢牢锁定设备屏幕时无法访问剪贴板。</li>
+  <li>
+<strong>CPU频率</strong><br>
+<em>％CPUFREQ</em><br>
+当前以CPU 0运行的频率。另请参阅：<a href="https://tasker.joaoapps.com/userguide/en/cpu.html">CPU控制</a>。<a href="https://tasker.joaoapps.com/userguide/en/cpu.html">https://tasker.joaoapps.com/userguide/en/cpu.html</a>
+</li>
+  <li>
+<strong>CPU调速器</strong><br>
+<em>％CPUGOV</em><br>
+当前的调速器控制CPU 0的频率。另请参见：<a href="https://tasker.joaoapps.com/userguide/en/cpu.html">CPU控制</a>。<a href="https://tasker.joaoapps.com/userguide/en/cpu.html">https://tasker.joaoapps.com/userguide/en/cpu.html</a>
+</li>
+  <li>
+<strong>日期</strong><br>
+<em>％DATE</em><br>
+当前人类可读的日期。</li>
+  <li>
+<strong>当月的当前天数</strong><br>
+<em>％DAYM</em><br>
+每月的当天日期，从1开始。</li>
+  <li>
+<strong>星期数</strong><br>
+<em>％DAYW</em><br>
+当前的<strong>星期数</strong>，从星期日开始。</li>
+  <li>
+<strong>设备ID /制造商/型号/产品</strong><br>
+<em>％DEVID /％DEVMAN /％DEVMOD /％DEVPROD</em><br>
+设备的ID，制造商，型号和产品名称。注意：ID <strong>不是设备</strong>的唯一标识符，而是设备的硬件。另请参阅：％DEVTID。</li>
+  <li>
+<strong>设备电话ID</strong><br>
+<em>％DEVTID</em><br>
+返回设备的唯一基于电话的ID（例如，对于GSM，IMEI，对于CDMA，MEID或ESN）。并非在所有设备上都可用。</li>
+  <li>
+<strong>显示亮度</strong><br>
+<em>％BRIGHT</em><br>
+当前屏幕亮度，0-255。在某些设备上，如果启用了Android设置“自动亮度”，则该值将始终为255。</li>
+  <li>
+<strong>显示超时</strong><br>
+<em>％DTOUT</em><br>
+当前系统屏幕超时（秒）。</li>
+  <li>
+<strong>电子邮件发件人/抄送/主题/日期/时间</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％EFROM /％ECC /％ESUBJ /％EDATE /％ETIME</em><br>
+K9电子邮件代理收到的最后一封电子邮件的发件人，抄送，主题，接收日期和接收时间。</li>
+  <li>可用<strong>内存</strong><br>
+<em>％MEMF</em><br>
+系统剩余可用内存，以MB为单位。</li>
+  <li>
+<strong>GPS状态</strong><br>
+（受监视的动态姜饼+） <em>％GPS</em> 系统GPS接收器是<strong>打开</strong>还是<strong>关闭</strong>。</li>
+  <li>
+<strong>心率</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br>
+<em>％HEART</em><br>
+当前检测到的心率，每分钟心跳数。 另请参阅：状态_心率_。 对于无接触（-1），精度不可靠（-2）或其他问题（-3），该值为负</li>
+  <li>
+<strong>HTTP响应代码/数据/内容长度</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><em>％HTTPR /％HTTPD /％HTTPL</em><br>
+来自上一个HTTP POST / GET操作的值。 如果服务器未返回内容长度，则将在可能的情况下根据返回的数据计算％HTTPL。</li>
+  <li>
+<strong>湿度</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br>
+<em>％HUMIDITY</em><br>
+相对环境空气湿度，以百分比为单位。 另请参阅：状态_湿度_。</li>
+  <li>
+<strong>输入法</strong><br>
+<em>％IMETHOD</em><br>
+当前有效的输入法。由4个部分组成，以逗号分隔：方法名称，子类型名称，模式，语言环境。 要访问特定零件，请使用“ *可变拆分”*操作。</li>
+  <li>
+<strong>中断模式</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％INTERRUPT</em><br>
+仅在Android 5.0+上可用，<strong>要求启用Tasker的通知访问服务</strong>，请参阅Android的“声音和通知”设置。 Android 5.0+：设备上的中断模式的当前状态：<strong>none</strong>，<strong>优先级</strong>或<strong>全部</strong>请参见：动作_中断模式_ Android 6.0+：设备上的“请勿打扰”模式的当前状态：<strong>none</strong>，<strong>priority</strong>，<strong>全部</strong>或<strong>警报</strong>请参见：动作_请勿打扰_</li>
+  <li>
+<strong>键盘锁状态</strong><br>
+<em>％KEYG</em><br>
+键盘锁是<strong>打开</strong>还是<strong>关闭</strong>
+</li>
+  <li>
+<strong>上一个应用程序</strong><br>
+<em>％LAPP</em><br>
+当前应用程序之前位于前台的应用程序的名称，例如Maps。</li>
+  <li>
+<strong>最后一张照片</strong><br>
+<em>％FOTO</em><br>
+Tasker或标准系统相机应用程序拍摄的最后一张照片的文件系统路径。</li>
+  <li>
+<strong>照明度</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br>
+<em>％LIGHT</em><br>
+最后记录的照明度（勒克斯）。请注意，直到光线水平发生变化，Android才会返回值，因此要测试传感器是否正常工作，应首先将其放在明亮的光线下。 关闭设备显示屏时，可能不会更改，请参阅。<br>
+<code class="language-plaintext highlighter-rouge">Menu / Prefs / More / Display Off Monitoring / Light Sensor</code>
+</li>
+  <li>
+<strong>位置</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％LOC</em><br>
+最近一次GPS定位的纬度和经度。 <a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">请参阅注释</a>。<br>
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">https://tasker.joaoapps.com/userguide/en/variables.html#locnote</a>
+</li>
+  <li>
+<strong>定位精度</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％LOCACC</em><br>
+最近一次GPS定位的精度（以米为单位）。 <a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">请参阅注释</a>。<br>
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">https://tasker.joaoapps.com/userguide/en/variables.html#locnote</a>
+</li>
+  <li>
+<strong>位置高度</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％LOCALT</em><br>
+最近一次GPS定位的高度（以米为单位）；如果不可用，则为0。 <a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">请参阅注释</a>。<br>
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">https://tasker.joaoapps.com/userguide/en/variables.html#locnote</a>
+</li>
+  <li>
+<strong>定位速度</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％LOCSPD</em><br>
+上一次GPS定位的速度，以米/秒为单位；如果不可用，则为0。 <a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">请参阅注释</a>。<br>
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">https://tasker.joaoapps.com/userguide/en/variables.html#locnote</a>
+</li>
+  <li>
+<strong>位置定位时间秒数</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％LOCTMS</em><br>
+最近一次GPS定位的时间（以秒为单位）。要获取修复时间，请远离％TIMES。 在计算出GPS时间相对于固定时间的偏移之前（应该在第一次GPS定位之后），才设置此值，因为该值在该点之前是无意义的。 <a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">请参阅注释</a>。<br>
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">https://tasker.joaoapps.com/userguide/en/variables.html#locnote</a>
+</li>
+  <li>
+<strong>位置（净值）</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％LOCN</em><br>
+最近一次网络位置修复的纬度和经度。 <a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">请参阅注释</a>。<br>
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">https://tasker.joaoapps.com/userguide/en/variables.html#locnote</a>
+</li>
+  <li>
+<strong>位置精度（净值）</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％LOCNACC</em><br>
+最近一次网络位置**定位的精度（**以米为单位）。 <a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">请参阅注释</a>。<br>
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">https://tasker.joaoapps.com/userguide/en/variables.html#locnote</a>
+</li>
+  <li>
+<strong>位置定位时间（净值）</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％LOCNTMS上</em><br>
+一次**网络位置定位的时间（**以秒为单位）。要获取修复时间，请远离％TIMES。 <a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">请参阅注释</a>。<br>
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">https://tasker.joaoapps.com/userguide/en/variables.html#locnote</a>
+</li>
+  <li>
+<strong>磁场强度</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br>
+<em>％MFIELD</em><br>
+作用在设备传感器所有三个轴上的磁场的微_特拉斯拉_总强度。 每秒更新一次。另请参见：state 。<br>
+<code class="language-plaintext highlighter-rouge">Magnetic Field</code>
+</li>
+  <li>
+<strong>音乐曲目</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br>
+<em>％MTRACK</em><br>
+当前播放的音乐曲目，支持：</li>
+  <li>Tasker动作_音乐播放_和_音乐播放目录_</li>
+  <li>内置的Android音乐播放器，可能不是在所有设备上都可以</li>
+  <li>功率放大器</li>
+  <li>BeyondPod（塔斯克v1.2.1 +）</li>
+  <li>幻影音乐控制专业版</li>
+  <li>媒体工具优先：如果同时播放Tasker和其他受支持的应用程序之一，则将显示非Tasker曲目。如果同时运行多个其他受支持的应用程序，则行为未指定。 笔记：</li>
+  <li>如果没有受支持的播放器，则可以尝试Phantom Music Control Pro或Media Utilities，它们支持很多播放器，应将信息传递给Tasker</li>
+  <li>暂停曲目会清除变量，取消暂停会再次设置它</li>
+  <li>您的音乐播放器可能需要启用一个选项才能广播曲目信息，或者广播只能以“专业”版本提供</li>
+  <li>
+<strong>静音</strong><br>
+<em>％MUTED</em><br>
+麦克风当前是否处于静音状态（<strong>打开</strong>）（<strong>关闭</strong>）。</li>
+  <li>
+<strong>夜间模式</strong><br>
+<em>％NIGHT</em><br>
+当前的Android夜间模式。 一<strong>对</strong>，<strong>关闭</strong>或<strong>自动</strong>。 如果为<strong>auto</strong>，Android将自行决定是否应处于夜间模式。</li>
+  <li>
+<strong>通知标题</strong><code class="language-plaintext highlighter-rouge">(monitored, dynamic)</code><br>
+<em>％NTITLE</em><br>
+状态栏中显示的最后一条通知的标题。在使用KitKat之前，需要运行Tasker的辅助功能服务器（请参阅Android辅助功能设置）。在KitKat中，需要运行Tasker的Notification Listener服务。 在由于或事件而运行的任务中，请使用变量％evtprm2而不是％NTITLE。这更加可靠，您可以访问通知的其他部分（％evtprm3等） ，但不显示Tasker生成的通知。<br>
+<code class="language-plaintext highlighter-rouge">NotificationNotification Removed</code>
+</li>
+  <li>
+<strong>电话号码</strong><br>
+<em>％PNUM</em><br>
+设备_正在_使用中的当前电话号码。 在某些手机上，它不起作用（Android限制），似乎与SIM卡的类型有关。</li>
+  <li>
+<strong>压力</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br>
+<em>％PRESSURE</em><br>
+设备上的当前气压（以毫巴为单位）。 关闭设备显示屏时，可能不会更改，请参阅。<br>
+<code class="language-plaintext highlighter-rouge">Menu / Prefs / Monitor / Display Off Monitoring / Pressure Sensor</code>
+</li>
+  <li>
+<strong>活动配置文件</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％PACTIVE</em><br>
+以激活顺序列出的当前活动的命名配置文件的逗号分隔列表。重复的名称只会在列表中出现一次。该列表始​​终以逗号开头和结尾，以使匹配更容易（如果不为空）。</li>
+  <li>
+<strong>已启用配置文件</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％PENABLED</em><br>
+按创建顺序，以逗号分隔的当前启用的命名配置文件列表。重复的名称只会在列表中出现一次。该列表始​​终以逗号开头和结尾，以使匹配更容易（如果不为空）。</li>
+  <li>
+<strong>漫游</strong><br>
+<em>％ROAM</em><br>
+<strong>上</strong>如果装置在当前电话网络上漫游，否则<strong>关闭</strong>。</li>
+  <li>
+<strong>Root Available</strong><br>
+<em>％ROOT</em><br>
+<strong>是</strong>如果此设备上具有root功能，则为<strong>yes</strong>，否则为<strong>no</strong>。</li>
+  <li>
+<strong>屏幕</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％SCREEN</em><br>
+屏幕是打开（值<strong>on</strong>）还是关闭（值<strong>off</strong>）。</li>
+  <li>
+<strong>SDK版本</strong><br>
+<em>％SDK设备</em><br>
+的数字Android <a href="http://developer.android.com/reference/android/os/Build.VERSION_CODES.html">SDK版本</a> 。<a href="http://developer.android.com/reference/android/os/Build.VERSION_CODES.html">http://developer.android.com/reference/android/os/Build.VERSION_CODES.html</a>
+</li>
+  <li>
+<strong>静音模式</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+_％SILENT <strong>静音模式</strong><br>
+的当前状态：<strong>关闭</strong>，<strong>振动</strong>或打开_。 在Android 5.0及更高版本中，此变量仅用于反映设备是否处于振动模式（<strong>vibrate</strong>）（不是）（任何其他值），但是包含<strong>on</strong>值是为了向后兼容，并且在设备不处于振动模式时进行设置，并且中断模式为<strong>无</strong> 或<strong>优先</strong>。 另请参见：变量*％INTERRUPT*，操作_静默模式_和_中断模式_。</li>
+  <li>
+<strong>SIM序列号</strong><br>
+<em>％SIMNUM</em><br>
+SIM卡的序列号（如果存在且可访问）。 如果SIM卡尚未解锁，将无法使用。</li>
+  <li>
+<strong>SIM卡状态</strong><br>
+<em>％SIMSTATE</em><br>
+SIM卡的当前状态：<strong>unknown, absent, pinrequired, pukrequired, netlocked or ready</strong>。</li>
+  <li>
+<strong>免提</strong><br>
+<em>％SPhone</em><br>
+扬声器是<strong>开启</strong>或<strong>关闭</strong>
+</li>
+  <li>
+<strong>语音</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％SPEECH</em><br>
+（如果适用）由于“ *播报”*或“ *播报到文件”*操作而导致的当前讲话。</li>
+  <li>
+<strong>正在运行的任务</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％TRUN</em><br>
+当前正在运行的任何被命名的任务的逗号分隔列表。该列表始​​终以逗号开头和结尾，以使匹配更容易（如果不为空）。</li>
+  <li>
+<strong>电话网络</strong><code class="language-plaintext highlighter-rouge">(dynamic, monitored)</code><br>
+<em>％TNET</em><br>
+设备正在使用的当前电话网络运营商。 在CDMA网络上可能不可靠</li>
+  <li>
+<strong>温度</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br>
+<em>％TEMP</em><br>
+当前环境温度，以摄氏度为单位。 关闭设备显示屏时，可能不会更改，请参阅。 另请参阅：状态_温度_。<br>
+<code class="language-plaintext highlighter-rouge">Menu / Prefs / Monitor / Display Off Monitoring / Temp. Sensor</code>
+</li>
+  <li>
+<strong>文本来自/日期/主题/时间</strong><code class="language-plaintext highlighter-rouge">(monitored)</code><br>
+<em>％SMSRF /％SMSRN /％SMSRB /％MMSRS /％SMSRD /％SMSRT</em><br>
+接收到的最后一个文本（SMS或MMS）的发件人地址，名称，正文，主题，日期和时间。 这些变量在被引用后将一直为空，直到第一次收到文本为止，因为Tasker不会监视文本，除非需要它。_名称_设置为发件人地址，无法查找任何联系人。在2.0之前的Android版本上不可用。 _车身_（％SMSRB）只设置短信。 仅为MMS设置_主题_（％MMSRS）。</li>
+  <li>
+<strong>时间</strong><br>
+<em>％TIME</em><br>
+当前人类可读的时间，以句点分隔，例如10.59</li>
+  <li>
+<strong>网卡</strong>（动态）<br>
+<em>％TETHER</em><br>
+网卡以逗号分隔的列表，即在其另一设备可以连接到这一个，以便使用它的互联网连接连接。 可能的形式是<strong>wifi</strong>，<strong>usb</strong>或<strong>bt</strong>。 仅当通过BT连接实际客户端以使用设备网络连接时，才会出现BT，而在启用该功能后（Android错误/限制）将立即出现其他客户端。</li>
+  <li>
+<strong>Time MilliSeconds</strong><br>
+<em>％TIMEMS</em><br>
+当前时间（以毫秒为单位）。（自1970年1月以来的毫秒数，如果您必须知道的话）。</li>
+  <li>
+<strong>时间秒数</strong><br>
+<em>％TIMES</em><br>
+当前时间，以秒为单位。（如果您必须知道的话，自1970年1月以来的秒数）。</li>
+  <li>
+<strong>UI模式</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br>
+<em>％UIMODE</em><br>
+当前的Android UI模式。 其中的<strong>汽车</strong>，<strong>办公桌</strong>，<strong>家电</strong>，<strong>电视</strong>（电视），<strong>手表</strong>，<strong>民主基金</strong>（未定义）或<strong>正常</strong>。</li>
+  <li>
+<strong>正常运行时间秒数</strong><br>
+<em>％UPS</em><br>
+自设备上次启动以来的秒数。</li>
+  <li>
+<strong>音量-警报/呼叫/ DTMF /媒体/通知/铃声/系统</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％VOLA /％VOLC /％VOLD /％VOLM /％VOLN /％VOLR /％VOLS</em><br>
+当前音频通道的音量级别。 在某些设备上，音量变化不会动态获取，而在其他设备上，使用电话应用程序时则不会动态变化。</li>
+  <li>
+<strong>WiFi信息</strong><br>
+<em>％WIFII</em><br>
+连接到接入点（AP）时，显示有关该AP的人类可读数据。未连接时，显示附近AP的最新Wifi扫描结果的详细信息。 在Android 8.1+上，可能需要在Android设置中启用基本位置信息服务。</li>
+  <li>
+<strong>无线状态</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br>
+<em>％WIFI</em><br>
+无论无线网络连接<strong>上</strong>或<strong>关闭</strong>。注意：如果WiFi是启用或禁用的，实际上除了启用以外的任何功能，都将其分类为关闭。</li>
+  <li>
+<strong>Wimax状态</strong><br>
+<em>％WIMAX</em><br>
+Wimax是<strong>打开</strong>还是<strong>关闭</strong>。注意：如果Wimax是启用或禁用的，实际上除了启用以外的任何功能，都将其分类为关闭。</li>
+  <li>
+<strong>窗口标签</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br>
+<em>％WIN</em><br>
+当前窗口的标签，可以是全屏活动或对话框。 如果标签未知，则不设置。 对于某些窗口，标签可能是窗口中第一项的标签，例如菜单项或按钮。</li>
+</ul>
+
+<h5 id="一般注意事项">一般注意事项</h5>
+
+<p>上面列表中标记<code class="language-plaintext highlighter-rouge">dynamic</code>的_变量_会在_变量值_状态和_变量集_事件发生变化时触发更改。</p>
+
+<p>标记<code class="language-plaintext highlighter-rouge">monitored</code>的变量在窗口小部件或已<strong>启用的</strong>配置文件或任务时，将导致相关监视器启动以跟踪其状态。例如，在Flash操作中使用的％CELLID将导致跟踪单元位置。</p>
+
+<p>限制：匿名快捷方式中无法检测到监视的变量。</p>
+
+<h5 id="关于位置变量的注意事项">关于位置变量的注意事项</h5>
+
+<p>当位置上下文的相关提供程序（Net或GPS）处于活动状态时，这些变量将报告该提供程序的值，如果其他应用程序正在请求位置，则这些值可能比Tasker所看到的要新。</p>
+
+<p>当相关提供者<strong>未</strong>处于活动状态时，这些变量将报告<strong>Tasker看到</strong>的最后一个值，这可能是<code class="language-plaintext highlighter-rouge">Get Location</code>操作或监视的结果<code class="language-plaintext highlighter-rouge">Location Context</code>。</p>
+
+<p>这意味着，如果您在两次使用变量之间关闭了位置提供程序，则报告的修复时间可能<strong>会倒退</strong>。</p>
+
+<p>还可以通过运行<code class="language-plaintext highlighter-rouge">Get Location</code>操作来手动更新位置变量。</p>
+
+<h4 id="用户变量user-variables">用户变量（User Variables）</h4>
+
+<p>动作_设置变量_（以及其他几个_变量_）可用于创建新变量。变量名称具有以下限制：</p>
+
+<ul>
+  <li>他们必须以**％**字符开头</li>
+  <li>他们区分大小写</li>
+  <li>然后必须至少再输入<strong>3</strong>个字母数字字符</li>
+  <li>它们还可以包含下划线字符（_），但不能以下划线字符开头或结尾</li>
+</ul>
+
+<p>通常，最好使用局部变量，因为：</p>
+
+<ul>
+  <li>您知道他们不会受到其他任务或场景的干扰</li>
+  <li>它们在几种方面更有效</li>
+</ul>
+
+<p>注意：同一任务同时运行的多个副本，每个都有各自的局部变量副本。</p>
+
+<h6 id="场景局部变量">场景局部变量</h6>
+
+<p>每个场景都有自己的局部变量集，这些局部变量与创建场景的任务共享；场景和任务都可以看到对两者所做的变量的更改。</p>
+
+<p>由于场景事件（例如，在元素上点击）而启动的任何任务也共享场景的变量（因此也共享创建场景的原始任务的变量）。</p>
+
+<p>结果，由场景事件（例如，在元素上点击）开始的任务（例如通过“ *<strong>显示场景</strong>”*动作显示新场景）将导致第二场景共享第一场景的变量。</p>
+
+<p>当任务显示由其他任务（或同一任务的不同副本）创建并随后隐藏的场景时，该任务的变量将被<strong>复制</strong>到场景变量（已存在的变量的替代值）中，但该任务<strong>不会共享</strong>场景变量，看不到对其的更改。</p>
+
+<h5 id="转义变量名">转义变量名</h5>
+
+<p>如果要防止替换变量名，请在其前面放一个\，例如</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Variable Set, %new, \%old</code></p>
+</blockquote>
+
+<p>将设置*%new_的值为_%old*，而不是*%old*的值。</p>
+
+<p>为了在变量名前加上****，可以使用转义反斜杠，例如</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Variable Set, %new, \\%old</code></p>
+</blockquote>
+
+<p>将％new_的值设置为/并且后面是％old_的<strong>值</strong>。</p>
+
+<h5 id="变量引用">变量引用</h5>
+
+<p>通过在变量名称的开头添加一个或多个额外的**%**符号，可以间接引用变量。例如：</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Variable Set, %colour, red Variable Set, %varname, colour Flash %%varname</code></p>
+</blockquote>
+
+<p>…将toast提示<strong>红色</strong>。</p>
+
+<p>使用这种表示法，可以分配名称事先未知的变量：</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Read File, variablename.txt, To Var, %varname Variable Set, %%varname, red</code></p>
+</blockquote>
+
+<p>这会将名称存储在文件中的变量设置<code class="language-plaintext highlighter-rouge">variablename.txt</code>为<strong>red</strong>。</p>
+
+<p>您可以根据需要深度嵌套引用（例如<code class="language-plaintext highlighter-rouge">%%%%var</code>），但是肯定会出现精神压力和错误。</p>
+
+<p>如果链的任何部分的变量名无效，则将返回原始引用。在第一个示例中，如果<code class="language-plaintext highlighter-rouge">%varname</code> 设置为<code class="language-plaintext highlighter-rouge">!!!</code>，则将提示<code class="language-plaintext highlighter-rouge">**%%varname**</code> ，而不是<strong>red</strong>。</p>
+
+<h5 id="变量周期">变量周期</h5>
+
+<p>如果未通过任何任务更改<strong>全局</strong>变量 的值，则该值将持续到卸载Tasker为止。</p>
+
+<p><strong>局部</strong>变量在创建它们的任务结束时丢失，或者在从场景调用的任务中父场景被销毁时丢失。</p>
+
+<h5 id="未初始化的变量">未初始化的变量</h5>
+
+<p>没有分配值的用户变量不会进行替换，例如，在表达式“ _我爱％fruit”中_，如果未初始化“％fruit”，则表达式保持原样，否则将“％fruit”替换为该值。</p>
+
+<p>例外：数学表达式中使用的未初始化变量将替换为0。</p>
+
+<h4 id="插件中的变量">插件中的变量</h4>
+
+<p>插件开发人员可以告诉Tasker用其当前Tasker值替换在插件字符串中找到的变量。如果您有不支持此功能的插件，请向开发人员发送此URL</p>
+
+<blockquote>
+  <p><a href="http://tasker.dinglisch.net/plugins.html">http://tasker.dinglisch.net/plugins.html</a></p>
+</blockquote>
+
+<p>其中有相关的详细信息。</p>
+
+<h4 id="可变数组">可变数组</h4>
+
+<p>Tasker支持伪数组。</p>
+
+<p>当与<code class="language-plaintext highlighter-rouge">For</code>操作一起使用时，它们特别有用，因为您可以依次对每个元素执行一组操作，例如列出一组文件然后测试每个文件。</p>
+
+<h5 id="例子">例子</h5>
+
+<p>如果四个变量**％arr1，％arr2，％arr3，％arr4<strong>分别持有</strong>a，b，c<strong>和</strong>d，** 那么我们就有一个包含4个_元素_的数组。这些变量可以像其他变量一样使用，但是也可以通过特殊方式访问它们。这里有些例子：</p>
+
+<ul>
+  <li>
+<strong>％arr(#)</strong><br>
+定义的数组元素的数量（本例中为<strong>4</strong>）</li>
+  <li>
+<strong>％ARR(＃&gt;)</strong><br>
+第一个被定义的数组元素的索引值，如果没有被定义时为<strong>0</strong>（本例中为<strong>1</strong>）。</li>
+  <li>
+<strong>％ARR(＃&lt;)</strong><br>
+最后一个被定义的数组元素的索引，如果没有被定义时为<strong>0</strong>（本例中为<strong>4</strong>）</li>
+  <li>
+<strong>％ARR(＃？b / c)</strong><br>
+数组索引的逗号分隔列表（从最低到最高），带有匹配值；如果不匹配，则返回<strong>0</strong>（在示例中为<strong>2,3</strong>）</li>
+  <li>
+<strong>％ARR(＃？〜Rregex here)</strong><br>
+与上面相同，但具有正则表达式匹配</li>
+  <li>
+<strong>％ARR(&gt;)</strong><br>
+第一个被定义的数组元素（本例中为<strong>a</strong>）的内容</li>
+  <li>
+<strong>％ARR(&lt;)</strong><br>
+最后定义的数组元素（本例中为<strong>d</strong>）的内容</li>
+  <li>
+<strong>％ARR()或％arr(）</strong> 所有以逗号（<strong>a，b，c，d</strong>）分隔的数组元素</li>
+  <li>
+<strong>％ARR(2)或仅％arr2</strong> 索引为2（本例中为<strong>b</strong>） 的元素的内容</li>
+  <li>
+<strong>％ARR(2:4)</strong><br>
+索引为2到4（<strong>b，c，d</strong>） 的已定义元素的内容</li>
+  <li>
+<strong>％ARR(:3)</strong><br>
+所有定义的索引最大的3个元素（<strong>a，b，c</strong>）</li>
+  <li>
+<strong>％ARR(3:)</strong><br>
+所有定义的从索引3开始的元素（<strong>c，d</strong>）</li>
+  <li>
+<strong>％ARR(1:2)</strong><br>
+所有定义的索引从1到2的元素（<strong>a，b</strong>）</li>
+</ul>
+
+<p>笔记：</p>
+
+<ul>
+  <li>数组实际上将始终定义所有元素，因此，例如％ARR(&gt;)将与％ARR(1)相同，％arr(#)将与％ARR(＃&lt;)相同</li>
+  <li>索引说明符本身可以是变量（例如％ARR(1:％MAX)或％ARR(＃？％FINDME)），但<strong>不能是</strong>变量数组</li>
+</ul>
+
+<h5 id="创建一个数组">创建一个数组</h5>
+
+<ol>
+  <li>使用<code class="language-plaintext highlighter-rouge">数组设置</code><code class="language-plaintext highlighter-rouge">Array Set</code>:<br>
+<strong>Array Set, %arr, a b c d</strong>
+</li>
+  <li>使用<code class="language-plaintext highlighter-rouge">变量分离</code><code class="language-plaintext highlighter-rouge">Variable Split</code> 一个存在的 (simple) 变量:<br>
+<strong>Variable Set %arr a b c d</strong><br>
+<strong>Variable Split %arr</strong>
+</li>
+  <li>用变量设置 <code class="language-plaintext highlighter-rouge">Variable Set</code>定义特殊的变量值（注：尾部为正数的变量）<br>
+<strong>Variable Set, %arr3, c</strong>.</li>
+  <li>使用数组推送 <code class="language-plaintext highlighter-rouge">Array Push</code> to add an initial element</li>
+  <li>一些另外的操作也可以创建结果为数组的值 e.g. <code class="language-plaintext highlighter-rouge">List Files</code>.</li>
+</ol>
+
+<h5 id="插入元素">插入元素</h5>
+
+<p>使用操作： <code class="language-plaintext highlighter-rouge">Array Push</code></p>
+
+<p>该_填充空间_参数可能需要更多的解释。仅当一个或多个数组元素未定义时才有意义。例如，如果我们有包含<strong>apple</strong>和<strong>banana</strong>的数组元素％arr1和％arr3 ：</p>
+
+<ul>
+  <li>
+<strong>数组推送％arr1、1，pear</strong><br>
+这样％arr1，％arr2和％arr4包含<strong>pear</strong>，<strong>apple</strong>和<strong>banana</strong> 。</li>
+  <li>但是<strong>数组推送％arr2、1，pear，Fill Spaces</strong><br>
+使％arr1，％arr2和％arr3包含<strong>pear</strong>，<strong>apple</strong>和<strong>banana</strong>。</li>
+</ul>
+
+<h5 id="移除元素">移除元素</h5>
+
+<p>使用<code class="language-plaintext highlighter-rouge">Array Pop</code>动作。注意之间的差<code class="language-plaintext highlighter-rouge">Array Pop</code>和<code class="language-plaintext highlighter-rouge">Variable Clear</code>： <code class="language-plaintext highlighter-rouge">Pop</code>降低了阵列中元件的数目，而<code class="language-plaintext highlighter-rouge">Clear</code>仅仅改变元件为未定义。</p>
+
+<p>示例：如果我们有包含<strong>apple</strong>，<strong>pear</strong>和<strong>banana</strong>的数组元素％arr1，％arr2，％arr3 ：</p>
+
+<ul>
+  <li>
+<strong>变量清理 ％arr2</strong><br>
+使％arr1和％arr3包含<strong>apple</strong>和<strong>banana</strong>。</li>
+  <li>但是<strong>数组弹出 ％arr2</strong><br>
+留下％arr1和％arr2包含<strong>apple</strong>和<strong>banana</strong>。</li>
+</ul>
+
+<h5 id="删除数组">删除数组</h5>
+
+<p>使用操作<code class="language-plaintext highlighter-rouge">Array Clear</code></p>
+
+<p>在大多数情况下，您也可以使用<strong>变量清除 ％arr*</strong> 并选中“模式匹配”，但这也会删除名为“％arrTOODEETOO”的变量，因此<code class="language-plaintext highlighter-rouge">Array Clear</code>更加安全。</p>
+
+<h5 id="排序">排序</h5>
+
+<p>该操作除其他外，还提供各种排序选项： <code class="language-plaintext highlighter-rouge">Array Process</code></p>
+
+<h5 id="数组效率">数组效率</h5>
+
+<p>数组旨在在处理高级数据时提供便利，而不是用于处理天文数据。进行数千个数组操作可能会花费几秒钟的时间（尽管主要是由于Tasker在每个操作之间进行的内部管理工作，而不是由于数组操作本身）。</p>
+
+<p>在存储效率方面，它们也毫无希望。您可能不想在数组中存储数万个项目。</p>
+
+<blockquote>
+  <p>译者注：本篇简单翻译官方文档<br>
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html">https://tasker.joaoapps.com/userguide/en/variables.html</a></p>
+</blockquote>
+
+
+    </div>
+
+</article>
+<div class="post-nav">
+<a class="previous" href="/jekyll-theme-yat/markdown/2018/12/05/an-exhibit-of-markdown.html" title="An exhibit of Markdown">An exhibit of Markdown</a><a class="next" href="/jekyll-theme-yat/essay/2023/09/15/essay.html" title="Essay">Essay</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        <li class="top-post">
+          <a class="post-link" href="/jekyll-theme-yat/jekyll/2015/01/01/welcome-to-jekyll.html" title="Welcome to Jekyll!">
+            Welcome to Jekyll!<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+<li class="">
+          <a class="post-link" href="/jekyll-theme-yat/example/2017/12/15/table-example.html" title="Table example">
+            Table example<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+<li class="">
+          <a class="post-link" href="/jekyll-theme-yat/example/2017/12/04/plantuml-example.html" title="Plantuml example">
+            Plantuml example<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+<li class="top-post">
+          <a class="post-link" href="/jekyll-theme-yat/markdown/2017/06/10/quick-mardown-example.html" title="Quick markdown example">
+            Quick markdown example<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+</ul>
+    </div>
+<div class="post-comments"></div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --><style type="text/css" media="screen">
+.post-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+
+<div class="post-menu">
+  <div class="post-menu-title">TOC</div>
+  <div class="post-menu-content"></div>
+</div>
+
+<script>
+  function generateContent() {
+    var menu = document.querySelector(".post-menu");
+    var menuContent =  menu.querySelector(".post-menu-content");
+    var headings = document.querySelector(".post-content").querySelectorAll("h2, h3, h4, h5, h6");
+
+    // Hide menu when no headings
+    if (headings.length === 0) {
+      return menu.style.display = "none";
+    }
+
+    // Generate post menu
+    var menuHTML = '';
+    for (var i = 0; i < headings.length; i++) {
+      var h = headings[i];
+      menuHTML += (
+        '<li class="h-' + h.tagName.toLowerCase() + '">'
+        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+    }
+
+    menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
+
+    // The header element
+    var header = document.querySelector('header.site-header');
+
+    function doMenuCollapse(index, over_items) {
+      var items = menuContent.firstChild.children;
+
+      if (over_items == undefined) {
+        over_items = 20;
+      }
+
+      if (items.length < over_items) {
+        return;
+      }
+
+      var activeItem = items[index];
+      var beginItem = activeItem
+      var endItem = activeItem
+      var beginIndex = index;
+      var endIndex = index + 1;
+      while (beginIndex >= 0
+        && !items[beginIndex].classList.contains('h-h2')) {
+        beginIndex -= 1;
+      }
+      while (endIndex < items.length
+        && !items[endIndex].classList.contains('h-h2')) {
+        endIndex += 1;
+      }
+      for (var i = 0; i < beginIndex; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+      for (var i = beginIndex + 1; i < endIndex; i++) {
+        item = items[i]
+        // if (!item.classList.contains('h-h2')) {
+          item.style.display = '';
+        // }
+      }
+      for (var i = endIndex; i < items.length; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+    }
+
+    // Init menu collapsed
+    doMenuCollapse(-1);
+
+    // Active the menu item
+    window.addEventListener('scroll', function (event) {
+      var lastActive = menuContent.querySelector('.active');
+      var changed = true;
+      var activeIndex = -1;
+      for (var i = headings.length - 1; i >= 0; i--) {
+        var h = headings[i];
+        var headingRect = h.getBoundingClientRect();
+        var headerRect = header.getBoundingClientRect();
+        var headerTop = Math.floor(headerRect.top);
+        var headerHeight = Math.floor(headerRect.height);
+        var headerHeight = headerTop + headerHeight + 20;
+        if (headingRect.top <= headerHeight) {
+          var id = 'h-' + h.getAttribute('id');
+          var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          var curActive = a.parentNode;
+          if (curActive) {
+            curActive.classList.add('active');
+            activeIndex = i;
+          }
+          if (lastActive == curActive) {
+            changed = false;
+          }
+          break;
+        }
+      }
+      if (changed) {
+        if (lastActive) {
+          lastActive.classList.remove('active');
+        }
+        doMenuCollapse(activeIndex);
+      }
+      event.preventDefault();
+    });
+  }
+  generateContent();
+</script>
+</section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/jekyll-theme-yat/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+<div>Unpublished Work <span class="copyleft">©</span> 2017-2023 bingDai</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="https://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/jekyll-theme-yat/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

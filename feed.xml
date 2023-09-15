@@ -1,0 +1,1361 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/jekyll-theme-yat/feed.xml" rel="self" type="application/atom+xml" /><link href="/jekyll-theme-yat/" rel="alternate" type="text/html" /><updated>2023-09-15T06:22:26+00:00</updated><id>/jekyll-theme-yat/feed.xml</id><title type="html">Hello World</title><subtitle>Have a good time!</subtitle><author><name>bingDai</name></author><entry><title type="html">Essay</title><link href="/jekyll-theme-yat/essay/2023/09/15/essay.html" rel="alternate" type="text/html" title="Essay" /><published>2023-09-15T00:00:00+00:00</published><updated>2023-09-15T00:00:00+00:00</updated><id>/jekyll-theme-yat/essay/2023/09/15/essay</id><content type="html" xml:base="/jekyll-theme-yat/essay/2023/09/15/essay.html"><![CDATA[<p>从昨天晚上开始下雨，一直持续到今天上午还没停，甚至有越下越大的趋势。天气虽然阴沉，但是心里莫名开心！</p>
+
+<p>早上出门上班，没有雨伞。本来是有两把的，周三起床天气阴沉，看看天气预报周三下班有雨，就把两把都拿到公司去了（有个新同事，帮他拿了一把）。结果周三中午下雨，下午没雨。今天周五就没雨伞用了，出了单元门，一路小跑到最近的商店又买了一把，恭喜我现在有三把雨伞了。</p>
+
+<p>从居住的地方到公司路程不远。走在路上，从伞沿下面看着前面的路，积水的小坑泛起水花；雨水汇成小河流过马路；伞上的雨水从前沿留下。心情就会自然轻松、愉快，我喜欢这种感觉。</p>
+
+<p><img src="/assets/images/20230915/Screenshot_20230915_101639_com.huawei.android.totemweather.jpg" alt="weather" />
+<img src="/assets/images/20230915/IMG_20230915_101809.jpg" alt="pic1" />
+<img src="/assets/images/20230915/IMG_20230915_101820.jpg" alt="pic2" /></p>]]></content><author><name>bingDai</name></author><category term="essay" /><category term="essay" /><summary type="html"><![CDATA[从昨天晚上开始下雨，一直持续到今天上午还没停，甚至有越下越大的趋势。天气虽然阴沉，但是心里莫名开心！]]></summary></entry><entry><title type="html">tasker variables</title><link href="/jekyll-theme-yat/tasker/2023/09/12/tasker-variables.html" rel="alternate" type="text/html" title="tasker variables" /><published>2023-09-12T00:00:00+00:00</published><updated>2023-09-12T00:00:00+00:00</updated><id>/jekyll-theme-yat/tasker/2023/09/12/tasker-variables</id><content type="html" xml:base="/jekyll-theme-yat/tasker/2023/09/12/tasker-variables.html"><![CDATA[<h4 id="概述">概述</h4>
+
+<p>变量是一个随时间变化的命名值，例如电池电量，一天中的时间。</p>
+
+<p>当Tasker在文本中遇到变量名称时，它将在执行操作之前用相关变量的当前值替换名称。</p>
+
+<p>变量的主要目的是：</p>
+
+<ul>
+  <li>_动态绑定_：对数据进行操作创建任务（例如响应SMS）时未知；直到收到SMS，发送者才被知道。</li>
+  <li>允许在任务内部和任务之间 进行<a href="https://tasker.joaoapps.com/userguide/en/flowcontrol.html">流控制</a><a href="https://tasker.joaoapps.com/userguide/en/flowcontrol.html">https://tasker.joaoapps.com/userguide/en/flowcontrol.html</a></li>
+  <li>记录数据以备将来使用，例如在任务之间传递数据</li>
+</ul>
+
+<h4 id="全局变量与局部变量">全局变量与局部变量</h4>
+
+<p>具有<strong>全小写</strong>名称的变量（例如％fruit_bar）是_局部变量_，这意味着它们的值特定于使用它们的任务或场景。名称中具有一个或多个大写字母的变量（例如，％Car，％WIFI）是_全局_变量，这意味着从任何地方访问它们都将返回相同值。</p>
+
+<h4 id="内置变量">内置变量</h4>
+
+<p>Tasker自动更新内置变量的值。</p>
+
+<h5 id="本地内置变量">本地内置变量</h5>
+
+<ul>
+  <li><strong>操作错误</strong><br />
+<em>％err</em><br />
+如果运行最后一个操作时发生错误，则设置为整数。实际数字可以表示发生的错误，但对于大多数Tasker动作（值得注意的例外：<code class="language-plaintext highlighter-rouge">Run Shell</code>和插件）通常为1 。每个动作都会设置或清除它，因此，如果要在紧接着的下一个动作之后需要它，则必须将其保存（例如：使用<a href="https://tasker.joaoapps.com/userguide/en/help/ah_set_variable.html">Variable Set</a>）。 <a href="https://tasker.joaoapps.com/userguide/en/help/ah_set_variable.html">https://tasker.joaoapps.com/userguide/en/help/ah_set_variable.html</a></li>
+  <li><strong>操作错误描述</strong><br />
+<em>％errmsg</em>
+<strong>最后导致设置％err</strong>的错误的描述。当前从未由Tasker设置，但可能由某些插件操作设置。</li>
+  <li><strong>任务优先级</strong><br />
+<em>％priority</em><br />
+正在运行的任务的优先级。当多个任务一起运行时，优先级确定哪个任务将执行下一个动作。另请参阅：<a href="https://tasker.joaoapps.com/userguide/en/tasks.html#scheduling">任务计划</a><br />
+<a href="https://tasker.joaoapps.com/userguide/en/tasks.html#scheduling">https://tasker.joaoapps.com/userguide/en/tasks.html#scheduling</a></li>
+  <li><strong>任务队列时间</strong><br />
+<em>％qtime</em><br />
+运行中的任务已经运行了多长时间（秒）。 请注意，优先级较高的任务可能会中断任务，因此此数字不一定是任务的总运行时间。</li>
+  <li><strong>任务调用者</strong><br />
+<em>％caller</em><br />
+一个变量数组，用于跟踪当前正在运行的任务的来源。_％caller1_给出当前任务的来源，_％caller2_给出*％caller1_的来源，依此类推。示例：如果任务A使用动作<code class="language-plaintext highlighter-rouge">Perform Task</code>启动任务B，则在任务编辑屏幕中按“播放”按钮运行任务A时，任务B中的_％caller1_将显示<strong>task = A</strong>，_％caller2_将显示<strong>ui</strong>。数组中每个条目的格式为_callertype*（**= <strong>_callername_（</strong>：**_subcallername_））呼叫者类型如下：</li>
+  <li><strong>配置文件</strong><br />
+一种配置（状态更改时）。根据配置文件是已激活还是已停用，_呼叫者_名称是<strong>进入</strong>还是<strong>退出</strong>。_subcallername_是配置文件的名称（如果有），否则为<strong>匿名</strong></li>
+  <li><strong>场景</strong><br />
+场景事件，其中_callername_为场景名称。对于元素事件，<em>subcallername_是元素名称。对于按下操作栏按钮，如果指定了**subcallername* ，_则该_subcallername* 为标签。对于场景全局事件（例如Key），_subcallername</em> _名称_为事件类型</li>
+  <li><strong>ui</strong><br />
+Tasker UI中任务编辑屏幕中的“播放”按钮</li>
+  <li><strong>启动</strong><br />
+点击启动子应用程序图标</li>
+  <li><strong>nbutton</strong><br />
+一个通知操作按钮，可以从Tasker的永久通知中使用，也可以通过“通知”操作之一创建。 _呼叫者名称_指定按钮的标签（如果存在）。</li>
+  <li><strong>外部</strong><br />
+外部应用（注：第三方应用）</li>
+  <li><strong>qstile</strong><br />
+快速设置磁贴。_callername_指定磁贴的标签。（注：下拉状态栏中的快捷设置）。</li>
+  <li><strong>appshort</strong><br />
+应用程序快捷方式（可通过长按Tasker图标来访问）。_callername_指定图块的标签。</li>
+  <li><strong>任务</strong><br />
+一个任务，从执行任务的行动。_subcallername_是任务名称（如果有），否则为<strong>匿名</strong></li>
+</ul>
+
+<h5 id="全局内置变量">全局内置变量</h5>
+
+<ul>
+  <li><strong>飞行模式状态</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％AIR</em><br />
+飞行模式是<strong>打开</strong>还是<strong>关闭</strong></li>
+  <li><strong>飞行无线通讯</strong><br />
+<em>％AIRR</em><br />
+以逗号分隔的无线通讯列表，进入飞行模式后将被<strong>禁用</strong>。 常见的无线通讯名称是：_蓝牙，蜂窝网络，nfc，wifi，wimax_。</li>
+  <li><strong>电池电量</strong><br />
+<em>％BATT</em><br />
+当前设备的电池电量从0到100。</li>
+  <li><strong>蓝牙状态</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％BLUE</em><br />
+蓝牙是<strong>处于打开</strong>状态还是处于其他状态（<strong>关闭</strong>）。</li>
+  <li><strong>日历列表</strong><br />
+<em>％CALS</em><br />
+设备上可用的以换行符分隔的日历列表。 每个条目的格式为_calendarprovider：calendarname_。 用法示例： Variable Set, %newline, \n Variable Split, %CALS, %newline Flash, %CALS(#) calendars, first one is %CALS(1)</li>
+  <li><strong>日历事件标题/说明/位置</strong>*％CALTITLE /％CALDESCR /％CALLOC *<br />
+<strong>当前</strong>日历事件的标题，描述和位置（如果有）。如果当前有多个日历事件，则变量指的是<strong>最短的</strong>事件。 提示：使用Misc / Test操作（为数据指定％TIMES ）查找有关当前事件的其他详细信息。</li>
+  <li><strong>呼叫名称/号码/日期/时间（拨打）</strong><code class="language-plaintext highlighter-rouge">(dynamic, monitored)</code><br />
+<em>％CNAME /％CNUM /％CDATE /％CTIME</em><br />
+当前（如果正在通话中）或最近一次呼叫的呼叫者姓名，号码，日期和时间。如果未知，则 主叫号码为<strong>0</strong>。 来电者姓名是**？**（如果是未知的）（可能是因为呼叫者号码被阻止），如果找不到联系人，则将其设置为呼叫者号码。在2.0之前的Android版本上不可用。</li>
+  <li><strong>呼叫名称/号码/日期/时间/持续时间（接听）</strong><code class="language-plaintext highlighter-rouge">(dynamic, monitored)</code><br />
+<em>％CONAME /％CONUM /％CODATE /％COTIME /％CODUR</em><br />
+上次（<strong>不是</strong>当前）呼出电话的被叫名称，号码，日期和时间。 如果无法查找联系人，则“被叫姓名”设置为被叫号码。在2.0之前的Android版本上不可用。</li>
+  <li>**小区ID **<code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br />
+<em>％CELLID</em><br />
+当前的小区信号塔ID（如果知道）。 如果使用的是Cell Near状态，则即使％CELLID报告塔ID未知或无效，有时Cell Near状态也会保持活动状态。这是因为Cell Near仅响应有效ID，以防止状态（例如由于服务中断）变为非活动状态。 为了向后兼容，将使用GSM前缀报告UMTS小区。 从Android 4.2（塔斯克版4.3+版本）开始，可以同时从2种不同的网络类型中找到单元。在这种情况下，该值优先报告列表中最左边的网络类型：GSM，CDMA，UMTS，LTE。</li>
+  <li><strong>信元信号强度</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br />
+<em>％CELLSIG</em><br />
+在粗糙的线性范围内，当前电话信号电平介于0到8之间。在某些手机上，级别将以2（0、2、4、6、8）为步长上升。如果该值未知或没有服务，则该值为-1。 从Android 4.2（塔斯克版4.3+版本）开始，可以同时从2种不同的网络类型中找到单元。在这种情况下，该值优先报告列表中最左边的网络类型：GSM，CDMA，UMTS，LTE。 某些Android版本存在一个错误，即在设备关闭和打开之前，报告的信号强度不会更新。</li>
+  <li><strong>小区服务状态</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br />
+<em>％CELLSRV</em><br />
+当前电话服务状态：_未知的，服务状态，无服务，紧急情况下，无电_。（_unknown, service, noservice, emergency, nopower_）</li>
+  <li><strong>剪贴板内容</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><em>％CLIP</em><br />
+系统剪贴板的当前内容。请注意，牢牢锁定设备屏幕时无法访问剪贴板。</li>
+  <li><strong>CPU频率</strong><br />
+<em>％CPUFREQ</em><br />
+当前以CPU 0运行的频率。另请参阅：<a href="https://tasker.joaoapps.com/userguide/en/cpu.html">CPU控制</a>。<a href="https://tasker.joaoapps.com/userguide/en/cpu.html">https://tasker.joaoapps.com/userguide/en/cpu.html</a></li>
+  <li><strong>CPU调速器</strong><br />
+<em>％CPUGOV</em><br />
+当前的调速器控制CPU 0的频率。另请参见：<a href="https://tasker.joaoapps.com/userguide/en/cpu.html">CPU控制</a>。<a href="https://tasker.joaoapps.com/userguide/en/cpu.html">https://tasker.joaoapps.com/userguide/en/cpu.html</a></li>
+  <li><strong>日期</strong><br />
+<em>％DATE</em><br />
+当前人类可读的日期。</li>
+  <li><strong>当月的当前天数</strong><br />
+<em>％DAYM</em><br />
+每月的当天日期，从1开始。</li>
+  <li><strong>星期数</strong><br />
+<em>％DAYW</em><br />
+当前的<strong>星期数</strong>，从星期日开始。</li>
+  <li><strong>设备ID /制造商/型号/产品</strong><br />
+<em>％DEVID /％DEVMAN /％DEVMOD /％DEVPROD</em><br />
+设备的ID，制造商，型号和产品名称。注意：ID <strong>不是设备</strong>的唯一标识符，而是设备的硬件。另请参阅：％DEVTID。</li>
+  <li><strong>设备电话ID</strong><br />
+<em>％DEVTID</em><br />
+返回设备的唯一基于电话的ID（例如，对于GSM，IMEI，对于CDMA，MEID或ESN）。并非在所有设备上都可用。</li>
+  <li><strong>显示亮度</strong><br />
+<em>％BRIGHT</em><br />
+当前屏幕亮度，0-255。在某些设备上，如果启用了Android设置“自动亮度”，则该值将始终为255。</li>
+  <li><strong>显示超时</strong><br />
+<em>％DTOUT</em><br />
+当前系统屏幕超时（秒）。</li>
+  <li><strong>电子邮件发件人/抄送/主题/日期/时间</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％EFROM /％ECC /％ESUBJ /％EDATE /％ETIME</em><br />
+K9电子邮件代理收到的最后一封电子邮件的发件人，抄送，主题，接收日期和接收时间。</li>
+  <li>可用<strong>内存</strong><br />
+<em>％MEMF</em><br />
+系统剩余可用内存，以MB为单位。</li>
+  <li><strong>GPS状态</strong><br />
+（受监视的动态姜饼+） <em>％GPS</em> 系统GPS接收器是<strong>打开</strong>还是<strong>关闭</strong>。</li>
+  <li><strong>心率</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br />
+<em>％HEART</em><br />
+当前检测到的心率，每分钟心跳数。 另请参阅：状态_心率_。 对于无接触（-1），精度不可靠（-2）或其他问题（-3），该值为负</li>
+  <li><strong>HTTP响应代码/数据/内容长度</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><em>％HTTPR /％HTTPD /％HTTPL</em><br />
+来自上一个HTTP POST / GET操作的值。 如果服务器未返回内容长度，则将在可能的情况下根据返回的数据计算％HTTPL。</li>
+  <li><strong>湿度</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br />
+<em>％HUMIDITY</em><br />
+相对环境空气湿度，以百分比为单位。 另请参阅：状态_湿度_。</li>
+  <li><strong>输入法</strong><br />
+<em>％IMETHOD</em><br />
+当前有效的输入法。由4个部分组成，以逗号分隔：方法名称，子类型名称，模式，语言环境。 要访问特定零件，请使用“ *可变拆分”*操作。</li>
+  <li><strong>中断模式</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％INTERRUPT</em><br />
+仅在Android 5.0+上可用，<strong>要求启用Tasker的通知访问服务</strong>，请参阅Android的“声音和通知”设置。 Android 5.0+：设备上的中断模式的当前状态：<strong>none</strong>，<strong>优先级</strong>或<strong>全部</strong>请参见：动作_中断模式_ Android 6.0+：设备上的“请勿打扰”模式的当前状态：<strong>none</strong>，<strong>priority</strong>，<strong>全部</strong>或<strong>警报</strong>请参见：动作_请勿打扰_</li>
+  <li><strong>键盘锁状态</strong><br />
+<em>％KEYG</em><br />
+键盘锁是<strong>打开</strong>还是<strong>关闭</strong></li>
+  <li><strong>上一个应用程序</strong><br />
+<em>％LAPP</em><br />
+当前应用程序之前位于前台的应用程序的名称，例如Maps。</li>
+  <li><strong>最后一张照片</strong><br />
+<em>％FOTO</em><br />
+Tasker或标准系统相机应用程序拍摄的最后一张照片的文件系统路径。</li>
+  <li><strong>照明度</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br />
+<em>％LIGHT</em><br />
+最后记录的照明度（勒克斯）。请注意，直到光线水平发生变化，Android才会返回值，因此要测试传感器是否正常工作，应首先将其放在明亮的光线下。 关闭设备显示屏时，可能不会更改，请参阅。<br />
+<code class="language-plaintext highlighter-rouge">Menu / Prefs / More / Display Off Monitoring / Light Sensor</code></li>
+  <li><strong>位置</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％LOC</em><br />
+最近一次GPS定位的纬度和经度。 <a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">请参阅注释</a>。<br />
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">https://tasker.joaoapps.com/userguide/en/variables.html#locnote</a></li>
+  <li><strong>定位精度</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％LOCACC</em><br />
+最近一次GPS定位的精度（以米为单位）。 <a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">请参阅注释</a>。<br />
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">https://tasker.joaoapps.com/userguide/en/variables.html#locnote</a></li>
+  <li><strong>位置高度</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％LOCALT</em><br />
+最近一次GPS定位的高度（以米为单位）；如果不可用，则为0。 <a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">请参阅注释</a>。<br />
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">https://tasker.joaoapps.com/userguide/en/variables.html#locnote</a></li>
+  <li><strong>定位速度</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％LOCSPD</em><br />
+上一次GPS定位的速度，以米/秒为单位；如果不可用，则为0。 <a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">请参阅注释</a>。<br />
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">https://tasker.joaoapps.com/userguide/en/variables.html#locnote</a></li>
+  <li><strong>位置定位时间秒数</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％LOCTMS</em><br />
+最近一次GPS定位的时间（以秒为单位）。要获取修复时间，请远离％TIMES。 在计算出GPS时间相对于固定时间的偏移之前（应该在第一次GPS定位之后），才设置此值，因为该值在该点之前是无意义的。 <a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">请参阅注释</a>。<br />
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">https://tasker.joaoapps.com/userguide/en/variables.html#locnote</a></li>
+  <li><strong>位置（净值）</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％LOCN</em><br />
+最近一次网络位置修复的纬度和经度。 <a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">请参阅注释</a>。<br />
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">https://tasker.joaoapps.com/userguide/en/variables.html#locnote</a></li>
+  <li><strong>位置精度（净值）</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％LOCNACC</em><br />
+最近一次网络位置**定位的精度（**以米为单位）。 <a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">请参阅注释</a>。<br />
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">https://tasker.joaoapps.com/userguide/en/variables.html#locnote</a></li>
+  <li><strong>位置定位时间（净值）</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％LOCNTMS上</em><br />
+一次**网络位置定位的时间（**以秒为单位）。要获取修复时间，请远离％TIMES。 <a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">请参阅注释</a>。<br />
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html#locnote">https://tasker.joaoapps.com/userguide/en/variables.html#locnote</a></li>
+  <li><strong>磁场强度</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br />
+<em>％MFIELD</em><br />
+作用在设备传感器所有三个轴上的磁场的微_特拉斯拉_总强度。 每秒更新一次。另请参见：state 。<br />
+<code class="language-plaintext highlighter-rouge">Magnetic Field</code></li>
+  <li><strong>音乐曲目</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br />
+<em>％MTRACK</em><br />
+当前播放的音乐曲目，支持：</li>
+  <li>Tasker动作_音乐播放_和_音乐播放目录_</li>
+  <li>内置的Android音乐播放器，可能不是在所有设备上都可以</li>
+  <li>功率放大器</li>
+  <li>BeyondPod（塔斯克v1.2.1 +）</li>
+  <li>幻影音乐控制专业版</li>
+  <li>媒体工具优先：如果同时播放Tasker和其他受支持的应用程序之一，则将显示非Tasker曲目。如果同时运行多个其他受支持的应用程序，则行为未指定。 笔记：</li>
+  <li>如果没有受支持的播放器，则可以尝试Phantom Music Control Pro或Media Utilities，它们支持很多播放器，应将信息传递给Tasker</li>
+  <li>暂停曲目会清除变量，取消暂停会再次设置它</li>
+  <li>您的音乐播放器可能需要启用一个选项才能广播曲目信息，或者广播只能以“专业”版本提供</li>
+  <li><strong>静音</strong><br />
+<em>％MUTED</em><br />
+麦克风当前是否处于静音状态（<strong>打开</strong>）（<strong>关闭</strong>）。</li>
+  <li><strong>夜间模式</strong><br />
+<em>％NIGHT</em><br />
+当前的Android夜间模式。 一<strong>对</strong>，<strong>关闭</strong>或<strong>自动</strong>。 如果为<strong>auto</strong>，Android将自行决定是否应处于夜间模式。</li>
+  <li><strong>通知标题</strong><code class="language-plaintext highlighter-rouge">(monitored, dynamic)</code><br />
+<em>％NTITLE</em><br />
+状态栏中显示的最后一条通知的标题。在使用KitKat之前，需要运行Tasker的辅助功能服务器（请参阅Android辅助功能设置）。在KitKat中，需要运行Tasker的Notification Listener服务。 在由于或事件而运行的任务中，请使用变量％evtprm2而不是％NTITLE。这更加可靠，您可以访问通知的其他部分（％evtprm3等） ，但不显示Tasker生成的通知。<br />
+<code class="language-plaintext highlighter-rouge">NotificationNotification Removed</code></li>
+  <li><strong>电话号码</strong><br />
+<em>％PNUM</em><br />
+设备_正在_使用中的当前电话号码。 在某些手机上，它不起作用（Android限制），似乎与SIM卡的类型有关。</li>
+  <li><strong>压力</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br />
+<em>％PRESSURE</em><br />
+设备上的当前气压（以毫巴为单位）。 关闭设备显示屏时，可能不会更改，请参阅。<br />
+<code class="language-plaintext highlighter-rouge">Menu / Prefs / Monitor / Display Off Monitoring / Pressure Sensor</code></li>
+  <li><strong>活动配置文件</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％PACTIVE</em><br />
+以激活顺序列出的当前活动的命名配置文件的逗号分隔列表。重复的名称只会在列表中出现一次。该列表始​​终以逗号开头和结尾，以使匹配更容易（如果不为空）。</li>
+  <li><strong>已启用配置文件</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％PENABLED</em><br />
+按创建顺序，以逗号分隔的当前启用的命名配置文件列表。重复的名称只会在列表中出现一次。该列表始​​终以逗号开头和结尾，以使匹配更容易（如果不为空）。</li>
+  <li><strong>漫游</strong><br />
+<em>％ROAM</em><br />
+<strong>上</strong>如果装置在当前电话网络上漫游，否则<strong>关闭</strong>。</li>
+  <li><strong>Root Available</strong><br />
+<em>％ROOT</em><br />
+<strong>是</strong>如果此设备上具有root功能，则为<strong>yes</strong>，否则为<strong>no</strong>。</li>
+  <li><strong>屏幕</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％SCREEN</em><br />
+屏幕是打开（值<strong>on</strong>）还是关闭（值<strong>off</strong>）。</li>
+  <li><strong>SDK版本</strong><br />
+<em>％SDK设备</em><br />
+的数字Android <a href="http://developer.android.com/reference/android/os/Build.VERSION_CODES.html">SDK版本</a> 。<a href="http://developer.android.com/reference/android/os/Build.VERSION_CODES.html">http://developer.android.com/reference/android/os/Build.VERSION_CODES.html</a></li>
+  <li><strong>静音模式</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+_％SILENT <strong>静音模式</strong><br />
+的当前状态：<strong>关闭</strong>，<strong>振动</strong>或打开_。 在Android 5.0及更高版本中，此变量仅用于反映设备是否处于振动模式（<strong>vibrate</strong>）（不是）（任何其他值），但是包含<strong>on</strong>值是为了向后兼容，并且在设备不处于振动模式时进行设置，并且中断模式为<strong>无</strong> 或<strong>优先</strong>。 另请参见：变量*％INTERRUPT*，操作_静默模式_和_中断模式_。</li>
+  <li><strong>SIM序列号</strong><br />
+<em>％SIMNUM</em><br />
+SIM卡的序列号（如果存在且可访问）。 如果SIM卡尚未解锁，将无法使用。</li>
+  <li><strong>SIM卡状态</strong><br />
+<em>％SIMSTATE</em><br />
+SIM卡的当前状态：<strong>unknown, absent, pinrequired, pukrequired, netlocked or ready</strong>。</li>
+  <li><strong>免提</strong><br />
+<em>％SPhone</em><br />
+扬声器是<strong>开启</strong>或<strong>关闭</strong></li>
+  <li><strong>语音</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％SPEECH</em><br />
+（如果适用）由于“ *播报”*或“ *播报到文件”*操作而导致的当前讲话。</li>
+  <li><strong>正在运行的任务</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％TRUN</em><br />
+当前正在运行的任何被命名的任务的逗号分隔列表。该列表始​​终以逗号开头和结尾，以使匹配更容易（如果不为空）。</li>
+  <li><strong>电话网络</strong><code class="language-plaintext highlighter-rouge">(dynamic, monitored)</code><br />
+<em>％TNET</em><br />
+设备正在使用的当前电话网络运营商。 在CDMA网络上可能不可靠</li>
+  <li><strong>温度</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br />
+<em>％TEMP</em><br />
+当前环境温度，以摄氏度为单位。 关闭设备显示屏时，可能不会更改，请参阅。 另请参阅：状态_温度_。<br />
+<code class="language-plaintext highlighter-rouge">Menu / Prefs / Monitor / Display Off Monitoring / Temp. Sensor</code></li>
+  <li><strong>文本来自/日期/主题/时间</strong><code class="language-plaintext highlighter-rouge">(monitored)</code><br />
+<em>％SMSRF /％SMSRN /％SMSRB /％MMSRS /％SMSRD /％SMSRT</em><br />
+接收到的最后一个文本（SMS或MMS）的发件人地址，名称，正文，主题，日期和时间。 这些变量在被引用后将一直为空，直到第一次收到文本为止，因为Tasker不会监视文本，除非需要它。_名称_设置为发件人地址，无法查找任何联系人。在2.0之前的Android版本上不可用。 _车身_（％SMSRB）只设置短信。 仅为MMS设置_主题_（％MMSRS）。</li>
+  <li><strong>时间</strong><br />
+<em>％TIME</em><br />
+当前人类可读的时间，以句点分隔，例如10.59</li>
+  <li><strong>网卡</strong>（动态）<br />
+<em>％TETHER</em><br />
+网卡以逗号分隔的列表，即在其另一设备可以连接到这一个，以便使用它的互联网连接连接。 可能的形式是<strong>wifi</strong>，<strong>usb</strong>或<strong>bt</strong>。 仅当通过BT连接实际客户端以使用设备网络连接时，才会出现BT，而在启用该功能后（Android错误/限制）将立即出现其他客户端。</li>
+  <li><strong>Time MilliSeconds</strong><br />
+<em>％TIMEMS</em><br />
+当前时间（以毫秒为单位）。（自1970年1月以来的毫秒数，如果您必须知道的话）。</li>
+  <li><strong>时间秒数</strong><br />
+<em>％TIMES</em><br />
+当前时间，以秒为单位。（如果您必须知道的话，自1970年1月以来的秒数）。</li>
+  <li><strong>UI模式</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br />
+<em>％UIMODE</em><br />
+当前的Android UI模式。 其中的<strong>汽车</strong>，<strong>办公桌</strong>，<strong>家电</strong>，<strong>电视</strong>（电视），<strong>手表</strong>，<strong>民主基金</strong>（未定义）或<strong>正常</strong>。</li>
+  <li><strong>正常运行时间秒数</strong><br />
+<em>％UPS</em><br />
+自设备上次启动以来的秒数。</li>
+  <li><strong>音量-警报/呼叫/ DTMF /媒体/通知/铃声/系统</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％VOLA /％VOLC /％VOLD /％VOLM /％VOLN /％VOLR /％VOLS</em><br />
+当前音频通道的音量级别。 在某些设备上，音量变化不会动态获取，而在其他设备上，使用电话应用程序时则不会动态变化。</li>
+  <li><strong>WiFi信息</strong><br />
+<em>％WIFII</em><br />
+连接到接入点（AP）时，显示有关该AP的人类可读数据。未连接时，显示附近AP的最新Wifi扫描结果的详细信息。 在Android 8.1+上，可能需要在Android设置中启用基本位置信息服务。</li>
+  <li><strong>无线状态</strong><code class="language-plaintext highlighter-rouge">(dynamic)</code><br />
+<em>％WIFI</em><br />
+无论无线网络连接<strong>上</strong>或<strong>关闭</strong>。注意：如果WiFi是启用或禁用的，实际上除了启用以外的任何功能，都将其分类为关闭。</li>
+  <li><strong>Wimax状态</strong><br />
+<em>％WIMAX</em><br />
+Wimax是<strong>打开</strong>还是<strong>关闭</strong>。注意：如果Wimax是启用或禁用的，实际上除了启用以外的任何功能，都将其分类为关闭。</li>
+  <li><strong>窗口标签</strong><code class="language-plaintext highlighter-rouge">(monitored,dynamic)</code><br />
+<em>％WIN</em><br />
+当前窗口的标签，可以是全屏活动或对话框。 如果标签未知，则不设置。 对于某些窗口，标签可能是窗口中第一项的标签，例如菜单项或按钮。</li>
+</ul>
+
+<h5 id="一般注意事项">一般注意事项</h5>
+
+<p>上面列表中标记<code class="language-plaintext highlighter-rouge">dynamic</code>的_变量_会在_变量值_状态和_变量集_事件发生变化时触发更改。</p>
+
+<p>标记<code class="language-plaintext highlighter-rouge">monitored</code>的变量在窗口小部件或已<strong>启用的</strong>配置文件或任务时，将导致相关监视器启动以跟踪其状态。例如，在Flash操作中使用的％CELLID将导致跟踪单元位置。</p>
+
+<p>限制：匿名快捷方式中无法检测到监视的变量。</p>
+
+<h5 id="关于位置变量的注意事项">关于位置变量的注意事项</h5>
+
+<p>当位置上下文的相关提供程序（Net或GPS）处于活动状态时，这些变量将报告该提供程序的值，如果其他应用程序正在请求位置，则这些值可能比Tasker所看到的要新。</p>
+
+<p>当相关提供者<strong>未</strong>处于活动状态时，这些变量将报告<strong>Tasker看到</strong>的最后一个值，这可能是<code class="language-plaintext highlighter-rouge">Get Location</code>操作或监视的结果<code class="language-plaintext highlighter-rouge">Location Context</code>。</p>
+
+<p>这意味着，如果您在两次使用变量之间关闭了位置提供程序，则报告的修复时间可能<strong>会倒退</strong>。</p>
+
+<p>还可以通过运行<code class="language-plaintext highlighter-rouge">Get Location</code>操作来手动更新位置变量。</p>
+
+<h4 id="用户变量user-variables">用户变量（User Variables）</h4>
+
+<p>动作_设置变量_（以及其他几个_变量_）可用于创建新变量。变量名称具有以下限制：</p>
+
+<ul>
+  <li>他们必须以**％**字符开头</li>
+  <li>他们区分大小写</li>
+  <li>然后必须至少再输入<strong>3</strong>个字母数字字符</li>
+  <li>它们还可以包含下划线字符（_），但不能以下划线字符开头或结尾</li>
+</ul>
+
+<p>通常，最好使用局部变量，因为：</p>
+
+<ul>
+  <li>您知道他们不会受到其他任务或场景的干扰</li>
+  <li>它们在几种方面更有效</li>
+</ul>
+
+<p>注意：同一任务同时运行的多个副本，每个都有各自的局部变量副本。</p>
+
+<h6 id="场景局部变量">场景局部变量</h6>
+
+<p>每个场景都有自己的局部变量集，这些局部变量与创建场景的任务共享；场景和任务都可以看到对两者所做的变量的更改。</p>
+
+<p>由于场景事件（例如，在元素上点击）而启动的任何任务也共享场景的变量（因此也共享创建场景的原始任务的变量）。</p>
+
+<p>结果，由场景事件（例如，在元素上点击）开始的任务（例如通过“ *<strong>显示场景</strong>”*动作显示新场景）将导致第二场景共享第一场景的变量。</p>
+
+<p>当任务显示由其他任务（或同一任务的不同副本）创建并随后隐藏的场景时，该任务的变量将被<strong>复制</strong>到场景变量（已存在的变量的替代值）中，但该任务<strong>不会共享</strong>场景变量，看不到对其的更改。</p>
+
+<h5 id="转义变量名">转义变量名</h5>
+
+<p>如果要防止替换变量名，请在其前面放一个\，例如</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Variable Set, %new, \%old</code></p>
+</blockquote>
+
+<p>将设置*%new_的值为_%old*，而不是*%old*的值。</p>
+
+<p>为了在变量名前加上****，可以使用转义反斜杠，例如</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Variable Set, %new, \\%old</code></p>
+</blockquote>
+
+<p>将％new_的值设置为/并且后面是％old_的<strong>值</strong>。</p>
+
+<h5 id="变量引用">变量引用</h5>
+
+<p>通过在变量名称的开头添加一个或多个额外的**%**符号，可以间接引用变量。例如：</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Variable Set, %colour, red Variable Set, %varname, colour Flash %%varname</code></p>
+</blockquote>
+
+<p>…将toast提示<strong>红色</strong>。</p>
+
+<p>使用这种表示法，可以分配名称事先未知的变量：</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Read File, variablename.txt, To Var, %varname Variable Set, %%varname, red</code></p>
+</blockquote>
+
+<p>这会将名称存储在文件中的变量设置<code class="language-plaintext highlighter-rouge">variablename.txt</code>为<strong>red</strong>。</p>
+
+<p>您可以根据需要深度嵌套引用（例如<code class="language-plaintext highlighter-rouge">%%%%var</code>），但是肯定会出现精神压力和错误。</p>
+
+<p>如果链的任何部分的变量名无效，则将返回原始引用。在第一个示例中，如果<code class="language-plaintext highlighter-rouge">%varname</code> 设置为<code class="language-plaintext highlighter-rouge">!!!</code>，则将提示<code class="language-plaintext highlighter-rouge">**%%varname**</code> ，而不是<strong>red</strong>。</p>
+
+<h5 id="变量周期">变量周期</h5>
+
+<p>如果未通过任何任务更改<strong>全局</strong>变量 的值，则该值将持续到卸载Tasker为止。</p>
+
+<p><strong>局部</strong>变量在创建它们的任务结束时丢失，或者在从场景调用的任务中父场景被销毁时丢失。</p>
+
+<h5 id="未初始化的变量">未初始化的变量</h5>
+
+<p>没有分配值的用户变量不会进行替换，例如，在表达式“ _我爱％fruit”中_，如果未初始化“％fruit”，则表达式保持原样，否则将“％fruit”替换为该值。</p>
+
+<p>例外：数学表达式中使用的未初始化变量将替换为0。</p>
+
+<h4 id="插件中的变量">插件中的变量</h4>
+
+<p>插件开发人员可以告诉Tasker用其当前Tasker值替换在插件字符串中找到的变量。如果您有不支持此功能的插件，请向开发人员发送此URL</p>
+
+<blockquote>
+  <p><a href="http://tasker.dinglisch.net/plugins.html">http://tasker.dinglisch.net/plugins.html</a></p>
+</blockquote>
+
+<p>其中有相关的详细信息。</p>
+
+<h4 id="可变数组">可变数组</h4>
+
+<p>Tasker支持伪数组。</p>
+
+<p>当与<code class="language-plaintext highlighter-rouge">For</code>操作一起使用时，它们特别有用，因为您可以依次对每个元素执行一组操作，例如列出一组文件然后测试每个文件。</p>
+
+<h5 id="例子">例子</h5>
+
+<p>如果四个变量**％arr1，％arr2，％arr3，％arr4<strong>分别持有</strong>a，b，c<strong>和</strong>d，** 那么我们就有一个包含4个_元素_的数组。这些变量可以像其他变量一样使用，但是也可以通过特殊方式访问它们。这里有些例子：</p>
+
+<ul>
+  <li><strong>％arr(#)</strong><br />
+定义的数组元素的数量（本例中为<strong>4</strong>）</li>
+  <li><strong>％ARR(＃&gt;)</strong><br />
+第一个被定义的数组元素的索引值，如果没有被定义时为<strong>0</strong>（本例中为<strong>1</strong>）。</li>
+  <li><strong>％ARR(＃&lt;)</strong><br />
+最后一个被定义的数组元素的索引，如果没有被定义时为<strong>0</strong>（本例中为<strong>4</strong>）</li>
+  <li><strong>％ARR(＃？b / c)</strong><br />
+数组索引的逗号分隔列表（从最低到最高），带有匹配值；如果不匹配，则返回<strong>0</strong>（在示例中为<strong>2,3</strong>）</li>
+  <li><strong>％ARR(＃？〜Rregex here)</strong><br />
+与上面相同，但具有正则表达式匹配</li>
+  <li><strong>％ARR(&gt;)</strong><br />
+第一个被定义的数组元素（本例中为<strong>a</strong>）的内容</li>
+  <li><strong>％ARR(&lt;)</strong><br />
+最后定义的数组元素（本例中为<strong>d</strong>）的内容</li>
+  <li><strong>％ARR()或％arr(）</strong> 所有以逗号（<strong>a，b，c，d</strong>）分隔的数组元素</li>
+  <li><strong>％ARR(2)或仅％arr2</strong> 索引为2（本例中为<strong>b</strong>） 的元素的内容</li>
+  <li><strong>％ARR(2:4)</strong><br />
+索引为2到4（<strong>b，c，d</strong>） 的已定义元素的内容</li>
+  <li><strong>％ARR(:3)</strong><br />
+所有定义的索引最大的3个元素（<strong>a，b，c</strong>）</li>
+  <li><strong>％ARR(3:)</strong><br />
+所有定义的从索引3开始的元素（<strong>c，d</strong>）</li>
+  <li><strong>％ARR(1:2)</strong><br />
+所有定义的索引从1到2的元素（<strong>a，b</strong>）</li>
+</ul>
+
+<p>笔记：</p>
+
+<ul>
+  <li>数组实际上将始终定义所有元素，因此，例如％ARR(&gt;)将与％ARR(1)相同，％arr(#)将与％ARR(＃&lt;)相同</li>
+  <li>索引说明符本身可以是变量（例如％ARR(1:％MAX)或％ARR(＃？％FINDME)），但<strong>不能是</strong>变量数组</li>
+</ul>
+
+<h5 id="创建一个数组">创建一个数组</h5>
+
+<ol>
+  <li>使用<code class="language-plaintext highlighter-rouge">数组设置</code><code class="language-plaintext highlighter-rouge">Array Set</code>:<br />
+<strong>Array Set, %arr, a b c d</strong></li>
+  <li>使用<code class="language-plaintext highlighter-rouge">变量分离</code><code class="language-plaintext highlighter-rouge">Variable Split</code> 一个存在的 (simple) 变量:<br />
+<strong>Variable Set %arr a b c d</strong><br />
+<strong>Variable Split %arr</strong></li>
+  <li>用变量设置 <code class="language-plaintext highlighter-rouge">Variable Set</code>定义特殊的变量值（注：尾部为正数的变量）<br />
+<strong>Variable Set, %arr3, c</strong>.</li>
+  <li>使用数组推送 <code class="language-plaintext highlighter-rouge">Array Push</code> to add an initial element</li>
+  <li>一些另外的操作也可以创建结果为数组的值 e.g. <code class="language-plaintext highlighter-rouge">List Files</code>.</li>
+</ol>
+
+<h5 id="插入元素">插入元素</h5>
+
+<p>使用操作： <code class="language-plaintext highlighter-rouge">Array Push</code></p>
+
+<p>该_填充空间_参数可能需要更多的解释。仅当一个或多个数组元素未定义时才有意义。例如，如果我们有包含<strong>apple</strong>和<strong>banana</strong>的数组元素％arr1和％arr3 ：</p>
+
+<ul>
+  <li><strong>数组推送％arr1、1，pear</strong><br />
+这样％arr1，％arr2和％arr4包含<strong>pear</strong>，<strong>apple</strong>和<strong>banana</strong> 。</li>
+  <li>但是<strong>数组推送％arr2、1，pear，Fill Spaces</strong><br />
+使％arr1，％arr2和％arr3包含<strong>pear</strong>，<strong>apple</strong>和<strong>banana</strong>。</li>
+</ul>
+
+<h5 id="移除元素">移除元素</h5>
+
+<p>使用<code class="language-plaintext highlighter-rouge">Array Pop</code>动作。注意之间的差<code class="language-plaintext highlighter-rouge">Array Pop</code>和<code class="language-plaintext highlighter-rouge">Variable Clear</code>： <code class="language-plaintext highlighter-rouge">Pop</code>降低了阵列中元件的数目，而<code class="language-plaintext highlighter-rouge">Clear</code>仅仅改变元件为未定义。</p>
+
+<p>示例：如果我们有包含<strong>apple</strong>，<strong>pear</strong>和<strong>banana</strong>的数组元素％arr1，％arr2，％arr3 ：</p>
+
+<ul>
+  <li><strong>变量清理 ％arr2</strong><br />
+使％arr1和％arr3包含<strong>apple</strong>和<strong>banana</strong>。</li>
+  <li>但是<strong>数组弹出 ％arr2</strong><br />
+留下％arr1和％arr2包含<strong>apple</strong>和<strong>banana</strong>。</li>
+</ul>
+
+<h5 id="删除数组">删除数组</h5>
+
+<p>使用操作<code class="language-plaintext highlighter-rouge">Array Clear</code></p>
+
+<p>在大多数情况下，您也可以使用<strong>变量清除 ％arr*</strong> 并选中“模式匹配”，但这也会删除名为“％arrTOODEETOO”的变量，因此<code class="language-plaintext highlighter-rouge">Array Clear</code>更加安全。</p>
+
+<h5 id="排序">排序</h5>
+
+<p>该操作除其他外，还提供各种排序选项： <code class="language-plaintext highlighter-rouge">Array Process</code></p>
+
+<h5 id="数组效率">数组效率</h5>
+
+<p>数组旨在在处理高级数据时提供便利，而不是用于处理天文数据。进行数千个数组操作可能会花费几秒钟的时间（尽管主要是由于Tasker在每个操作之间进行的内部管理工作，而不是由于数组操作本身）。</p>
+
+<p>在存储效率方面，它们也毫无希望。您可能不想在数组中存储数万个项目。</p>
+
+<blockquote>
+  <p>译者注：本篇简单翻译官方文档<br />
+<a href="https://tasker.joaoapps.com/userguide/en/variables.html">https://tasker.joaoapps.com/userguide/en/variables.html</a></p>
+</blockquote>]]></content><author><name>bingDai</name></author><category term="tasker" /><category term="tasker" /><summary type="html"><![CDATA[概述]]></summary></entry><entry><title type="html">An exhibit of Markdown</title><link href="/jekyll-theme-yat/markdown/2018/12/05/an-exhibit-of-markdown.html" rel="alternate" type="text/html" title="An exhibit of Markdown" /><published>2018-12-05T00:00:00+00:00</published><updated>2018-12-05T00:00:00+00:00</updated><id>/jekyll-theme-yat/markdown/2018/12/05/an-exhibit-of-markdown</id><content type="html" xml:base="/jekyll-theme-yat/markdown/2018/12/05/an-exhibit-of-markdown.html"><![CDATA[<p>This note demonstrates some of what <a href="https://daringfireball.net/projects/markdown/">Markdown</a> is capable of doing.</p>
+
+<h2 id="an-exhibit-of-markdown">An exhibit of Markdown</h2>
+
+<p><em>Note: Feel free to play with this page. Unlike regular notes, this doesn’t automatically save itself.</em></p>
+
+<h2 id="basic-formatting">Basic formatting</h2>
+
+<p>Paragraphs can be written like so. A paragraph is the basic block of Markdown. A paragraph is what text will turn into when there is no reason it should become anything else.</p>
+
+<p>Paragraphs must be separated by a blank line. Basic formatting of <em>italics</em> and <strong>bold</strong> is supported. This <em>can be <strong>nested</strong> like</em> so.</p>
+
+<h2 id="lists">Lists</h2>
+
+<h3 id="ordered-list">Ordered list</h3>
+
+<ol>
+  <li>Item 1</li>
+  <li>A second item</li>
+  <li>Number 3</li>
+  <li>Ⅳ</li>
+</ol>
+
+<p><em>Note: the fourth item uses the Unicode character for <a href="https://www.fileformat.info/info/unicode/char/2163/index.htm">Roman numeral four</a>.</em></p>
+
+<h3 id="unordered-list">Unordered list</h3>
+
+<ul>
+  <li>An item</li>
+  <li>Another item</li>
+  <li>Yet another item</li>
+  <li>And there’s more…</li>
+</ul>
+
+<h2 id="paragraph-modifiers">Paragraph modifiers</h2>
+
+<h3 id="code-block">Code block</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Code blocks are very useful for developers and other people who look at code or other things that are written in plain text. As you can see, it uses a fixed-width font.
+</code></pre></div></div>
+
+<p>You can also make <code class="language-plaintext highlighter-rouge">inline code</code> to add code into other things.</p>
+
+<h3 id="quote">Quote</h3>
+
+<blockquote>
+  <p>Here is a quote. What this is should be self explanatory. Quotes are automatically indented when they are used.</p>
+</blockquote>
+
+<h2 id="headings">Headings</h2>
+
+<p>There are six levels of headings. They correspond with the six levels of HTML headings. You’ve probably noticed them already in the page. Each level down uses one more hash character.</p>
+
+<h3 id="headings-can-also-contain-formatting">Headings <em>can</em> also contain <strong>formatting</strong></h3>
+
+<h3 id="they-can-even-contain-inline-code">They can even contain <code class="language-plaintext highlighter-rouge">inline code</code></h3>
+
+<p>Of course, demonstrating what headings look like messes up the structure of the page.</p>
+
+<p>I don’t recommend using more than three or four levels of headings here, because, when you’re smallest heading isn’t too small, and you’re largest heading isn’t too big, and you want each size up to look noticeably larger and more important, there there are only so many sizes that you can use.</p>
+
+<h2 id="urls">URLs</h2>
+
+<p>URLs can be made in a handful of ways:</p>
+
+<ul>
+  <li>A named link to <a href="https://www.markitdown.net/">MarkItDown</a>. The easiest way to do these is to select what you want to make a link and hit <code class="language-plaintext highlighter-rouge">Ctrl+L</code>.</li>
+  <li>Another named link to <a href="https://www.markitdown.net/">MarkItDown</a></li>
+  <li>Sometimes you just want a URL like <a href="https://www.markitdown.net/">https://www.markitdown.net/</a>.</li>
+</ul>
+
+<h2 id="horizontal-rule">Horizontal rule</h2>
+
+<p>A horizontal rule is a line that goes across the middle of the page.</p>
+
+<hr />
+
+<p>It’s sometimes handy for breaking things up.</p>
+
+<h2 id="images">Images</h2>
+
+<p>Markdown can also contain images. I’ll need to add something here sometime.</p>
+
+<h2 id="finally">Finally</h2>
+
+<p>There’s actually a lot more to Markdown than this. See the official <a href="https://daringfireball.net/projects/markdown/basics">introduction</a> and <a href="https://daringfireball.net/projects/markdown/syntax">syntax</a> for more information. However, be aware that this is not using the official implementation, and this might work subtly differently in some of the little things.</p>]]></content><author><name>bingDai</name></author><category term="markdown" /><category term="example" /><category term="markdown" /><summary type="html"><![CDATA[This note demonstrates some of what Markdown is capable of doing.]]></summary></entry><entry><title type="html">Mathjax Test</title><link href="/jekyll-theme-yat/markdown/2018/05/26/mathjax-test.html" rel="alternate" type="text/html" title="Mathjax Test" /><published>2018-05-26T00:00:00+00:00</published><updated>2018-05-26T00:00:00+00:00</updated><id>/jekyll-theme-yat/markdown/2018/05/26/mathjax-test</id><content type="html" xml:base="/jekyll-theme-yat/markdown/2018/05/26/mathjax-test.html"><![CDATA[<ul>
+  <li>A safe integer is an integer that
+    <ul>
+      <li>can be exactly represented as an IEEE-754 double precision number, and</li>
+      <li>whose IEEE-75 representation cannot be the result of rounding any other integer to fit the IEEE-754 representation</li>
+    </ul>
+  </li>
+  <li>For example, $ 2 ^ {53} - 1 $ is a safe integer,
+    <ul>
+      <li>it can be exactly represented</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>bingDai</name></author><category term="markdown" /><category term="test" /><summary type="html"><![CDATA[A safe integer is an integer that can be exactly represented as an IEEE-754 double precision number, and whose IEEE-75 representation cannot be the result of rounding any other integer to fit the IEEE-754 representation For example, $ 2 ^ {53} - 1 $ is a safe integer, it can be exactly represented]]></summary></entry><entry><title type="html">Video example</title><link href="/jekyll-theme-yat/example/2017/12/18/video-example.html" rel="alternate" type="text/html" title="Video example" /><published>2017-12-18T00:00:00+00:00</published><updated>2017-12-18T00:00:00+00:00</updated><id>/jekyll-theme-yat/example/2017/12/18/video-example</id><content type="html" xml:base="/jekyll-theme-yat/example/2017/12/18/video-example.html"><![CDATA[<h2 id="canon-in-d-pachelbels-canon---cello--piano-best-wedding-version">Canon in D (Pachelbel’s Canon) - Cello &amp; Piano [BEST WEDDING VERSION]</h2>
+<p>Some of you know that we occasionally play for weddings. As you can imagine, we get a LOT of requests for Canon in D, and we discovered that there were no good arrangements available anywhere for piano and cello! Hard to believe given its popularity. So we decided to make our own! We tried to stick as closely to the original as possible (which was written for three violins and basso continuo), and we performed it <em>not</em> at a snail’s pace so the bride can actually make it down the aisle without putting everyone to sleep. 🙊(Yeah, we said it! Nobody likes a slow processional!) Also, the number one complaint about this piece from cellists is always how booooring it is to play because they literally have to play the same 8 bass notes over and over for the entire piece. Problem solved with this arrangement because the cello never has to play the bass! 🙌(The piano does, but we get lots of other fun stuff too so it’s ok!) So for all you musicians out there playing weddings, we hope you enjoy playing this arrangement a little more than the ones you were used to…You can get it from www.musicnotes.com. 😊Be sure to let us know in the comments if you do!</p>
+
+<p><img src="//www.youtube.com/watch?v=Ptk_1Dc2iPY" alt="" /></p>
+
+<h2 id="gucci-hallucination--the-line-animation--gucci">GUCCI HALLUCINATION / THE LINE ANIMATION / GUCCI</h2>
+<p>BACKGROUND /</p>
+
+<p>Gucci share their creative vision through a series of surreal animated paintings by acclaimed artist Ignasi Monreal and The Line Animation studio. The animations make up part of a larger campaign shared via social media, above the line and print.</p>
+
+<p>APPROACH /</p>
+
+<p>Our aim was to ground and accentuate the outlandish scenarios with ambient sound design. Neither proclaiming to be positive or negative, the sound conveys a sense of the uncanny and leaves the audience with nothing but their own interpretations. their creative vision through a series of surreal animated paintings by acclaimed artist Ignasi Monreal and The Line Animation studio. The animations make up part of a larger campaign shared via social media, above the line and print.</p>
+
+<p><img src="https://vimeo.com/263856289" alt="" /></p>
+
+<h2 id="finneas-demos-how-he-builds-songs-for-billie-eilish">FINNEAS Demos How He Builds Songs For Billie Eilish</h2>
+<p>Grammy Award-winning musician and producer FINNEAS sits down with Pitchfork and closely examines his creative process while working on some of the biggest hit songs of the past couple years. FINNEAS explores the sounds that brought upon 
+some of his greatest musical breakthroughs in songs such as bad guy, bury a friend, ocean eyes, when the party’s over, I Lost a Friend, Used to This and much more.</p>
+
+<p><img src="https://dai.ly/x7tgcev" alt="" /></p>
+
+<h2 id="2019-bmw-vision-m-next-concept-hd">2019 BMW Vision M NEXT Concept (HD)</h2>
+
+<p>In future, drivers will be able to choose whether they wish to be driven or do the driving themselves. With the BMW Vision M NEXT, the BMW Group is revealing its take on how driving pleasure might look in future. It offers a foretaste of the BMW M brand’s electrified future by placing the focus squarely on the actively engaged driver. Intelligent technologies provide comprehensive yet carefully targeted assistance to turn them into the ultimate driver.</p>
+
+<p><img src="https://www.dailymotion.com/video/x7bur2y" alt="" /></p>
+
+<h2 id="this-is-the-poster-image">This is the poster image</h2>
+<p>In modern browsers, adding a video to your page is as easy as adding an image. No longer do you need to deal with special plug-ins or require crazy markup, you can do it with a single element.
+<img src="//www.html5rocks.com/en/tutorials/video/basics/devstories.webm" alt="video" /></p>]]></content><author><name>bingDai</name></author><category term="example" /><category term="video" /><summary type="html"><![CDATA[Canon in D (Pachelbel’s Canon) - Cello &amp; Piano [BEST WEDDING VERSION] Some of you know that we occasionally play for weddings. As you can imagine, we get a LOT of requests for Canon in D, and we discovered that there were no good arrangements available anywhere for piano and cello! Hard to believe given its popularity. So we decided to make our own! We tried to stick as closely to the original as possible (which was written for three violins and basso continuo), and we performed it not at a snail’s pace so the bride can actually make it down the aisle without putting everyone to sleep. 🙊(Yeah, we said it! Nobody likes a slow processional!) Also, the number one complaint about this piece from cellists is always how booooring it is to play because they literally have to play the same 8 bass notes over and over for the entire piece. Problem solved with this arrangement because the cello never has to play the bass! 🙌(The piano does, but we get lots of other fun stuff too so it’s ok!) So for all you musicians out there playing weddings, we hope you enjoy playing this arrangement a little more than the ones you were used to…You can get it from www.musicnotes.com. 😊Be sure to let us know in the comments if you do!]]></summary></entry><entry><title type="html">Table example</title><link href="/jekyll-theme-yat/example/2017/12/15/table-example.html" rel="alternate" type="text/html" title="Table example" /><published>2017-12-15T00:00:00+00:00</published><updated>2017-12-15T00:00:00+00:00</updated><id>/jekyll-theme-yat/example/2017/12/15/table-example</id><content type="html" xml:base="/jekyll-theme-yat/example/2017/12/15/table-example.html"><![CDATA[<h2 id="table-example-as-below">Table example as below</h2>
+
+<p><strong>For now, these extended features are provided:</strong></p>
+
+<ul>
+  <li>Cells spanning multiple columns</li>
+  <li>Cells spanning multiple rows</li>
+  <li>Cells text align separately</li>
+  <li>Table header not required</li>
+  <li>Grouped table header rows or data rows</li>
+</ul>
+
+<h3 id="rowspan-and-colspan">Rowspan and Colspan</h3>
+<p>^^ in a cell indicates it should be merged with the cell above.<br />
+This feature is contributed by <a href="https://github.com/pmccloghrylaing">pmccloghrylaing</a>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">Stage</th>
+      <th style="text-align: right">Direct Products</th>
+      <th style="text-align: right">ATP Yields</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">Glycolysis</td>
+      <td style="text-align: right">2 ATP                   |</td>
+      <td style="text-align: right"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: right">^^</td>
+      <td style="text-align: right">2 NADH</td>
+      <td style="text-align: right">3–5 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">Pyruvaye oxidation</td>
+      <td style="text-align: right">2 NADH</td>
+      <td style="text-align: right">5 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">Citric acid cycle</td>
+      <td style="text-align: right">2 ATP           |</td>
+      <td style="text-align: right"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: right">^^</td>
+      <td style="text-align: right">6 NADH</td>
+      <td style="text-align: right">15 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">^^</td>
+      <td style="text-align: right">2 FADH</td>
+      <td style="text-align: right">3 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">30–32 ATP                         ||</td>
+      <td style="text-align: right"> </td>
+      <td style="text-align: right"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>[ Net ATP yields per hexose]</p>
+
+<h3 id="multiline">Multiline</h3>
+<p>A backslash at end to join cell contents with the following lines.<br />
+This feature is contributed by <a href="https://github.com/Lucas-C">Lucas-C</a>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">:     Easy Multiline     :||</th>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange  \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange  \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange  \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="headerless">Headerless</h3>
+<p>Table header can be eliminated.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>♜</td>
+      <td> </td>
+      <td>♝</td>
+      <td>♛</td>
+      <td>♚</td>
+      <td>♝</td>
+      <td>♞</td>
+      <td>♜</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>♟</td>
+      <td>♟</td>
+      <td>♟</td>
+      <td> </td>
+      <td>♟</td>
+      <td>♟</td>
+      <td>♟</td>
+    </tr>
+    <tr>
+      <td>♟</td>
+      <td> </td>
+      <td>♞</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>♗</td>
+      <td> </td>
+      <td> </td>
+      <td>♟</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>♙</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>♘</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>♙</td>
+      <td>♙</td>
+      <td>♙</td>
+      <td>♙</td>
+      <td> </td>
+      <td>♙</td>
+      <td>♙</td>
+      <td>♙</td>
+    </tr>
+    <tr>
+      <td>♖</td>
+      <td>♘</td>
+      <td>♗</td>
+      <td>♕</td>
+      <td>♔</td>
+      <td> </td>
+      <td> </td>
+      <td>♖</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|:     Fruits <span class="se">\|\|</span> Food           :|||
+|:-------- |:-------- |:------------ |
+| Apple    |: Apple  :|    Apple     <span class="err">\</span>
+| Banana   |  Banana  |    Banana    <span class="err">\</span>
+| Orange   |  Orange  |    Orange    |
+|:   Rowspan is 5   :||:  How's it? :|
+|^^   A. Peach       ||^^ 1. Fine    |
+|^^   B. Orange      ||^^ 2. Bad  $I = <span class="se">\i</span>nt <span class="se">\r</span>ho R^{2} dV$     |
+|^^   C. Banana      ||   It's OK! !<span class="p">[</span><span class="nv">example image</span><span class="p">][</span><span class="ss">my-image</span><span class="p">]</span>  |
+</code></pre></div></div>
+
+<h3 id="text-alignment">Text Alignment</h3>
+<p>Table cell can be set alignment separately.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">\:Fruits         |</th>
+      <th style="text-align: left">Food   :</th>
+      <th style="text-align: left"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left">Fruits\::        |</th>
+      <th style="text-align: left"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">: \:Fruits       :|</th>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left">:       Food     :|</th>
+      <th style="text-align: left"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+      <td style="text-align: left">:   Strawberry    :</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple  &amp;  Banana |</td>
+      <td style="text-align: left">^^</td>
+      <td style="text-align: left">Peach        :|</td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>: \:Fruits       :|</td>
+      <td> </td>
+      <td>:       Food     :|</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Apple</td>
+      <td>Banana</td>
+      <td>Orange</td>
+      <td>:   Strawberry    :</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">:     Fruits || Food           :||</th>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">: Apple  :</td>
+      <td style="text-align: left">Apple     \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Banana    \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Orange</td>
+      <td style="text-align: left">Orange</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">:   Rowspan is 5   :|</td>
+      <td style="text-align: left">:  How’s it? :</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">^^   A. Peach       |</td>
+      <td style="text-align: left">^^ 1. Fine</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">^^   B. Orange      |</td>
+      <td style="text-align: left">^^ 2. Bad  $I = \int \rho R^{2} dV$</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">^^   C. Banana      |</td>
+      <td style="text-align: left">It’s OK! ![example image](http://www.unexpected-vortices.com/sw/rippledoc/example-image.jpg "An exemplary image")</td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>]]></content><author><name>bingDai</name></author><category term="example" /><category term="table" /><summary type="html"><![CDATA[Table example as below]]></summary></entry><entry><title type="html">Mermaid example</title><link href="/jekyll-theme-yat/example/2017/12/08/mermaid-example.html" rel="alternate" type="text/html" title="Mermaid example" /><published>2017-12-08T00:00:00+00:00</published><updated>2017-12-08T00:00:00+00:00</updated><id>/jekyll-theme-yat/example/2017/12/08/mermaid-example</id><content type="html" xml:base="/jekyll-theme-yat/example/2017/12/08/mermaid-example.html"><![CDATA[<h3 id="1-pie-chart">1. Pie chart</h3>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoicGllIHRpdGxlIFBldHMgYWRvcHRlZCBieSB2b2x1bnRlZXJzXG5cIkRvZ3NcIiA6IDM4NlxuXCJDYXRzXCIgOiA4NVxuXCJSYXRzXCIgOiAzNSIsIm1lcm1haWQiOm51bGx9" /></p>
+
+<h3 id="2-sequence-diagram">2. sequence diagram</h3>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG5BbGljZSAtPj4gQm9iOiBIZWxsbyBCb2IsIGhvdyBhcmUgeW91P1xuQm9iLS0-PkpvaG46IEhvdyBhYm91dCB5b3UgSm9obj9cbkJvYi0teCBBbGljZTogSSBhbSBnb29kIHRoYW5rcyFcbkJvYi14IEpvaG46IEkgYW0gZ29vZCB0aGFua3MhXG5Ob3RlIHJpZ2h0IG9mIEpvaG46IEJvYiB0aGlua3MgYSBsb25nPGJyLz5sb25nIHRpbWUsIHNvIGxvbmc8YnIvPnRoYXQgdGhlIHRleHQgZG9lczxici8-bm90IGZpdCBvbiBhIHJvdy5cbiUlLVxuQm9iLS0-QWxpY2U6IENoZWNraW5nIHdpdGggSm9obi4uLlxuQWxpY2UtPkpvaG46IFllcy4uLiBKb2huLCBob3cgYXJlIHlvdT8iLCJtZXJtYWlkIjpudWxsfQ" /></p>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoiZ3JhcGggVERcbkFbQ2hyaXN0bWFzXSAtLT58R2V0IG1vbmV5fCBCKEdvIHNob3BwaW5nKVxuQiAtLT4gQ3tMZXQgbWUgdGhpbmt9XG5DIC0tPnxPbmV8IERbTGFwdG9wXVxuQyAtLT58VHdvfCBFW2lQaG9uZV1cbkMgLS0-fFRocmVlfCBGW2ZhOmZhLWNhciBDYXJdIiwibWVybWFpZCI6bnVsbH0" /></p>
+
+<h3 id="3-class-diagram">3. Class diagram</h3>
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoiY2xhc3NEaWFncmFtXG5BbmltYWwgPHwtLSBEdWNrXG5BbmltYWwgPHwtLSBGaXNoXG5BbmltYWwgPHwtLSBaZWJyYVxuQW5pbWFsIDogK2ludCBhZ2VcbkFuaW1hbCA6ICtTdHJpbmcgZ2VuZGVyXG5BbmltYWw6ICtpc01hbW1hbCgpXG5BbmltYWw6ICttYXRlKClcbmNsYXNzIER1Y2t7XG4rU3RyaW5nIGJlYWtDb2xvclxuK3N3aW0oKVxuK3F1YWNrKClcbn1cbmNsYXNzIEZpc2h7XG4taW50IHNpemVJbkZlZXRcbi1jYW5FYXQoKVxufVxuY2xhc3MgWmVicmF7XG4rYm9vbCBpc193aWxkXG4rcnVuKClcbn0iLCJtZXJtYWlkIjpudWxsfQ" /></p>
+
+<h3 id="4-state-diagram">4. State diagram</h3>
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoic3RhdGVEaWFncmFtXG5bKl0gLS0-IFN0aWxsXG5TdGlsbCAtLT4gWypdXG4lJS1cblN0aWxsIC0tPiBNb3Zpbmdcbk1vdmluZyAtLT4gU3RpbGxcbk1vdmluZyAtLT4gQ3Jhc2hcbkNyYXNoIC0tPiBbKl0iLCJtZXJtYWlkIjpudWxsfQ" /></p>]]></content><author><name>bingDai</name></author><category term="example" /><category term="mermaid" /><summary type="html"><![CDATA[1. Pie chart]]></summary></entry><entry><title type="html">Plantuml example</title><link href="/jekyll-theme-yat/example/2017/12/04/plantuml-example.html" rel="alternate" type="text/html" title="Plantuml example" /><published>2017-12-04T00:00:00+00:00</published><updated>2017-12-04T00:00:00+00:00</updated><id>/jekyll-theme-yat/example/2017/12/04/plantuml-example</id><content type="html" xml:base="/jekyll-theme-yat/example/2017/12/04/plantuml-example.html"><![CDATA[<h2 id="my-first-plantuml">My First PlantUML</h2>
+
+<h3 id="plantuml-block-1">PlantUML Block-1</h3>
+<p><img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f0a40656e64756d6c" /></p>
+
+<h3 id="plantuml-block-2">PlantUML Block-2</h3>
+<p><img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f20776f726c640a40656e64756d6c" /></p>
+
+<h3 id="plantuml-block-3">PlantUML Block-3</h3>
+<p><img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a282a29202d2d3e2022496e697469616c697a6174696f6e220a0a69662022536f6d65205465737422207468656e0a20202d2d3e5b747275655d2022536f6d65204163746976697479220a20202d2d3e2022416e6f74686572206163746976697479220a20202d72696768742d3e20282a290a656c73650a20202d3e5b66616c73655d2022536f6d657468696e6720656c7365220a20202d2d3e5b456e64696e672070726f636573735d20282a290a656e6469660a40656e64756d6c" /></p>
+
+<h3 id="plantuml-block-4">PlantUML Block-4</h3>
+
+<p><img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a736b696e706172616d2068616e647772697474656e20747275650a0a736b696e706172616d2075736563617365207b0a20204261636b67726f756e64436f6c6f72204461726b536561477265656e0a2020426f72646572436f6c6f72204461726b536c617465477261790a0a20204261636b67726f756e64436f6c6f723c3c204d61696e203e3e2059656c6c6f77477265656e0a2020426f72646572436f6c6f723c3c204d61696e203e3e2059656c6c6f77477265656e0a0a20204172726f77436f6c6f72204f6c6976650a20204163746f72426f72646572436f6c6f7220626c61636b0a20204163746f72466f6e744e616d6520436f75726965720a0a20204163746f724261636b67726f756e64436f6c6f723c3c2048756d616e203e3e20476f6c640a7d0a0a55736572203c3c2048756d616e203e3e0a3a4d61696e2044617461626173653a206173204d7953716c203c3c204170706c69636174696f6e203e3e0a28537461727429203c3c204f6e652053686f74203e3e0a2855736520746865206170706c69636174696f6e29206173202855736529203c3c204d61696e203e3e0a0a55736572202d3e20285374617274290a55736572202d2d3e2028557365290a0a4d7953716c202d2d3e2028557365290a0a40656e64756d6c" /></p>]]></content><author><name>bingDai</name></author><category term="example" /><category term="plantuml" /><summary type="html"><![CDATA[My First PlantUML]]></summary></entry><entry><title type="html">Quick markdown example</title><link href="/jekyll-theme-yat/markdown/2017/06/10/quick-mardown-example.html" rel="alternate" type="text/html" title="Quick markdown example" /><published>2017-06-10T00:00:00+00:00</published><updated>2017-06-10T00:00:00+00:00</updated><id>/jekyll-theme-yat/markdown/2017/06/10/quick-mardown-example</id><content type="html" xml:base="/jekyll-theme-yat/markdown/2017/06/10/quick-mardown-example.html"><![CDATA[<p>Paragraphs are separated by a blank line.</p>
+
+<p>2nd paragraph. <em>Italic</em>, <strong>bold</strong>, and <code class="language-plaintext highlighter-rouge">monospace</code>. Itemized lists
+look like:</p>
+
+<ul>
+  <li>this one</li>
+  <li>that one</li>
+  <li>the other one</li>
+</ul>
+
+<p>Note that — not considering the asterisk — the actual text
+content starts at 4-columns in.</p>
+
+<blockquote>
+  <p>Block quotes are
+written like so.</p>
+
+  <p>They can span multiple paragraphs,
+if you like.</p>
+</blockquote>
+
+<p>Use 3 dashes for an em-dash. Use 2 dashes for ranges (ex., “it’s all
+in chapters 12–14”). Three dots … will be converted to an ellipsis.
+Unicode is supported. ☺</p>
+
+<h2 id="an-h2-header">An h2 header</h2>
+
+<p>Here’s a numbered list:</p>
+
+<ol>
+  <li>first item</li>
+  <li>second item</li>
+  <li>third item</li>
+</ol>
+
+<p>Note again how the actual text starts at 4 columns in (4 characters
+from the left side). Here’s a code sample:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Let me re-iterate ...
+for i in 1 .. 10 { do-something(i) }
+</code></pre></div></div>
+
+<p>As you probably guessed, indented 4 spaces. By the way, instead of
+indenting the block, you can use delimited blocks, if you like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>define foobar() {
+    print "Welcome to flavor country!";
+}
+</code></pre></div></div>
+
+<p>(which makes copying &amp; pasting easier). You can optionally mark the
+delimited block for Pandoc to syntax highlight it:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">time</span>
+<span class="c1"># Quick, count to ten!
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="c1"># (but not *too* quick)
+</span>    <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="an-h3-header">An h3 header</h3>
+
+<p>Now a nested list:</p>
+
+<ol>
+  <li>
+    <p>First, get these ingredients:</p>
+
+    <ul>
+      <li>carrots</li>
+      <li>celery</li>
+      <li>lentils</li>
+    </ul>
+  </li>
+  <li>
+    <p>Boil some water.</p>
+  </li>
+  <li>
+    <p>Dump everything in the pot and follow
+this algorithm:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find wooden spoon
+uncover pot
+stir
+cover pot
+balance wooden spoon precariously on pot handle
+wait 10 minutes
+goto first step (or shut off burner when done)
+</code></pre></div>    </div>
+
+    <p>Do not bump wooden spoon or it will fall.</p>
+  </li>
+</ol>
+
+<p>Notice again how text always lines up on 4-space indents (including
+that last line which continues item 3 above).</p>
+
+<p>Here’s a link to <a href="http://foo.bar">a website</a>, to a <a href="local-doc.html">local
+doc</a>, and to a <a href="#an-h2-header">section heading in the current
+doc</a>. Here’s a footnote <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>.</p>
+
+<p>Tables can look like this:</p>
+
+<p>Name           Size  Material      Color
+————- —–  ————  ————
+All Business      9  leather       brown
+Roundabout       10  hemp canvas   natural
+Cinderella       11  glass         transparent</p>
+
+<p>Table: Shoes sizes, materials, and colors.</p>
+
+<p>(The above is the caption for the table.) Pandoc also supports
+multi-line tables:</p>
+
+<hr />
+<p>Keyword   Text
+——–  ———————–
+red       Sunsets, apples, and
+          other red or reddish
+          things.</p>
+
+<p>green     Leaves, grass, frogs
+          and other things it’s
+          not easy being.
+——–  ———————–</p>
+
+<p>A horizontal rule follows.</p>
+
+<hr />
+
+<p>Here’s a definition list:</p>
+
+<dl>
+  <dt>apples</dt>
+  <dd>Good for making applesauce.</dd>
+  <dt>oranges</dt>
+  <dd>Citrus!</dd>
+  <dt>tomatoes</dt>
+  <dd>There’s no “e” in tomatoe.</dd>
+</dl>
+
+<p>Again, text is indented 4 spaces. (Put a blank line between each
+term and  its definition to spread things out more.)</p>
+
+<p>Here’s a “line block” (note how whitespace is honored):</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Line one</td>
+    </tr>
+    <tr>
+      <td>Line too</td>
+    </tr>
+    <tr>
+      <td>Line tree</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>and images can be specified like so:</p>
+
+<p><img src="https://user-images.githubusercontent.com/9413601/123900693-1d9ebd00-d99c-11eb-8e9e-cf7879187606.png" alt="example image" title="An exemplary image" /></p>
+
+<p>Inline math equation: $\omega = d\phi / dt$. Display
+math should get its own line like so:</p>
+
+<p>$$I = \int \rho R^{2} dV$$</p>
+
+<p>And note that you can backslash-escape any punctuation characters
+which you wish to be displayed literally, ex.: `foo`, *bar*, etc.</p>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Some footnote text. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name>bingDai</name></author><category term="markdown" /><category term="example" /><summary type="html"><![CDATA[Paragraphs are separated by a blank line.]]></summary></entry><entry><title type="html">This post demonstrates post content styles</title><link href="/jekyll-theme-yat/junk/2017/05/20/this-post-demonstrates-post-content-styles.html" rel="alternate" type="text/html" title="This post demonstrates post content styles" /><published>2017-05-20T00:00:00+00:00</published><updated>2017-05-20T00:00:00+00:00</updated><id>/jekyll-theme-yat/junk/2017/05/20/this-post-demonstrates-post-content-styles</id><content type="html" xml:base="/jekyll-theme-yat/junk/2017/05/20/this-post-demonstrates-post-content-styles.html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit.</p>
+
+<h2 id="some-great-heading-h2">Some great heading (h2)</h2>
+
+<p>Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum. In arcu magna, aliquet vel pretium et, molestie et arcu.</p>
+
+<p>Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.</p>
+
+<h2 id="another-great-heading-h2">Another great heading (h2)</h2>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit.</p>
+
+<h3 id="some-great-subheading-h3">Some great subheading (h3)</h3>
+
+<p>Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum. In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum.</p>
+
+<p>Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc.</p>
+
+<h3 id="some-great-subheading-h3-1">Some great subheading (h3)</h3>
+
+<p>Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.</p>
+
+<blockquote>
+  <p>This quote will change your life. It will reveal the secrets of the universe, and all the wonders of humanity. Don’t misuse it.</p>
+</blockquote>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt.</p>
+
+<h3 id="some-great-subheading-h3-2">Some great subheading (h3)</h3>
+
+<p>Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span> <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Hello, World!<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.</p>
+
+<h4 id="you-might-want-a-sub-subheading-h4">You might want a sub-subheading (h4)</h4>
+
+<p>In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.</p>
+
+<p>In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.</p>
+
+<h4 id="but-its-probably-overkill-h4">But it’s probably overkill (h4)</h4>
+
+<p>In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.</p>
+
+<h3 id="oh-hai-an-unordered-list">Oh hai, an unordered list!!</h3>
+
+<p>In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.</p>
+
+<ul>
+  <li>First item, yo</li>
+  <li>Second item, dawg</li>
+  <li>Third item, what what?!</li>
+  <li>Fourth item, fo sheezy my neezy</li>
+</ul>
+
+<h3 id="oh-hai-an-ordered-list">Oh hai, an ordered list!!</h3>
+
+<p>In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.</p>
+
+<ol>
+  <li>First item, yo</li>
+  <li>Second item, dawg</li>
+  <li>Third item, what what?!</li>
+  <li>Fourth item, fo sheezy my neezy</li>
+</ol>
+
+<h2 id="headings-are-cool-h2">Headings are cool! (h2)</h2>
+
+<p>Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.</p>
+
+<p>Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.</p>
+
+<p>Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc.</p>
+
+<h3 id="tables">Tables</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title 1</th>
+      <th>Title 2</th>
+      <th>Title 3</th>
+      <th>Title 4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>lorem</td>
+      <td>lorem ipsum</td>
+      <td>lorem ipsum dolor</td>
+      <td>lorem ipsum dolor sit</td>
+    </tr>
+    <tr>
+      <td>lorem ipsum dolor sit</td>
+      <td>lorem ipsum dolor sit</td>
+      <td>lorem ipsum dolor sit</td>
+      <td>lorem ipsum dolor sit</td>
+    </tr>
+    <tr>
+      <td>lorem ipsum dolor sit</td>
+      <td>lorem ipsum dolor sit</td>
+      <td>lorem ipsum dolor sit</td>
+      <td>lorem ipsum dolor sit</td>
+    </tr>
+    <tr>
+      <td>lorem ipsum dolor sit</td>
+      <td>lorem ipsum dolor sit</td>
+      <td>lorem ipsum dolor sit</td>
+      <td>lorem ipsum dolor sit</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title 1</th>
+      <th>Title 2</th>
+      <th>Title 3</th>
+      <th>Title 4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>lorem</td>
+      <td>lorem ipsum</td>
+      <td>lorem ipsum dolor</td>
+      <td>lorem ipsum dolor sit</td>
+    </tr>
+    <tr>
+      <td>lorem ipsum dolor sit amet</td>
+      <td>lorem ipsum dolor sit amet consectetur</td>
+      <td>lorem ipsum dolor sit amet</td>
+      <td>lorem ipsum dolor sit</td>
+    </tr>
+    <tr>
+      <td>lorem ipsum dolor</td>
+      <td>lorem ipsum</td>
+      <td>lorem</td>
+      <td>lorem ipsum</td>
+    </tr>
+    <tr>
+      <td>lorem ipsum dolor</td>
+      <td>lorem ipsum dolor sit</td>
+      <td>lorem ipsum dolor sit amet</td>
+      <td>lorem ipsum dolor sit amet consectetur</td>
+    </tr>
+  </tbody>
+</table>]]></content><author><name>Bart Simpson</name></author><category term="junk" /><summary type="html"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit.]]></summary></entry></feed>
